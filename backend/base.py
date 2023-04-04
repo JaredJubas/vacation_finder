@@ -3,6 +3,7 @@ from get_cities import get_cities
 
 api = Flask(__name__)
 
+
 @api.route('/cities')
 def my_profile():
     minTemp = request.args.get('minTemp')

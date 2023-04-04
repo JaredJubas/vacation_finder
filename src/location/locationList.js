@@ -1,21 +1,21 @@
-import React from 'react'
+import React from 'react';
 
 function LocationList({ location, month }) {
   return (
-    <table className='ui celled striped padded table'>
+    <table className="ui celled striped padded table">
       <thead>
         <tr>
-        <th>
-            <h3 className='ui center aligned header'>Number</h3>
+          <th>
+            <h3 className="ui center aligned header">Number</h3>
           </th>
           <th>
-            <h3 className='ui center aligned header'>City</h3>
+            <h3 className="ui center aligned header">City</h3>
           </th>
           <th>
-            <h3 className='ui center aligned header'>Country</h3>
+            <h3 className="ui center aligned header">Country</h3>
           </th>
           <th>
-            <h3 className='ui center aligned header'>Weather (celsius)</h3>
+            <h3 className="ui center aligned header">Weather (celsius)</h3>
           </th>
         </tr>
       </thead>
@@ -32,7 +32,7 @@ function LocationList({ location, month }) {
         })}
       </tbody>
     </table>
-  )
+  );
 }
 
-export default LocationList
+export default LocationList;

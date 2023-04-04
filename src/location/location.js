@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React from 'react';
 
 function Location(data) {
   return (
@@ -8,7 +7,7 @@ function Location(data) {
       <td>{data.country}</td>
       <td>{data.months}</td>
     </tr>
-  )
+  );
 }
 
-export default Location
+export default Location;
