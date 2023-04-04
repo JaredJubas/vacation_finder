@@ -1,12 +1,14 @@
-from flask import Flask
+from flask import Flask, request
+from get_cities import get_cities
 
 api = Flask(__name__)
 
-@api.route('/profile')
+@api.route('/cities')
 def my_profile():
-    response_body = {
-        "name": "Nagato",
-        "about" :"Hello! I'm a full stack developer that loves python and javascript"
-    }
+    minTemp = request.args.get('minTemp')
+    maxTemp = request.args.get('maxTemp')
+    month = request.args.get('month')
 
-    return response_body
+    response = get_cities(minTemp, maxTemp, month)
+
+    return response
