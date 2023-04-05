@@ -19,8 +19,8 @@ function HomePage() {
       params: {
         minTemp,
         maxTemp,
-        month
-      }
+        month,
+      },
     })
       .then((response) => {
         const res = response.data;
@@ -29,8 +29,6 @@ function HomePage() {
       .catch((error) => {
         if (error.response) {
           console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
         }
       });
   }
@@ -54,7 +52,8 @@ function HomePage() {
             name="mintemp"
             placeholder="Mintemp"
             value={minTemp}
-            onChange={handleMinTemp}></input>
+            onChange={handleMinTemp}
+          ></input>
           <br />
           <label htmlFor="maxtemp">Maximum Temperature: </label>
           <input
@@ -63,7 +62,8 @@ function HomePage() {
             name="maxtemp"
             placeholder="MaxTemp"
             value={maxTemp}
-            onChange={handleMaxTemp}></input>
+            onChange={handleMaxTemp}
+          ></input>
           <br />
           <label htmlFor="month">Month: </label>
           <select name="month" id="month" required>
@@ -87,15 +87,12 @@ function HomePage() {
           <button
             onClick={() => getData(minTemp, maxTemp)}
             className="submitButton"
-            disabled={minTemp === null || maxTemp === null}>
+            disabled={minTemp === null || maxTemp === null}
+          >
             Submit
           </button>
         </div>
-        {cityData && (
-          <LocationList
-            location={cityData}
-            month={document.getElementById('month').value}></LocationList>
-        )}
+        {cityData && <LocationList locations={cityData}></LocationList>}
       </header>
     </div>
   );
