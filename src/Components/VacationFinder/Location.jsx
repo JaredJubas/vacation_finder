@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Location({ locations }) {
+const Location = ({ locations }) => {
   const cities = locations.map(({ city }) => city).sort();
   return (
     <div>
@@ -18,6 +18,6 @@ function Location({ locations }) {
       })}
     </div>
   );
-}
+};
 
 export default Location;

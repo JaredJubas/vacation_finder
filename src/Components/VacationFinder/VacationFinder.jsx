@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
-import '../App.css';
-import LocationList from '../location/locationList';
+import './VacationFinder.css';
+import LocationList from './LocationList';
 
-function HomePage() {
+const VacationFinder = () => {
   const [minTemp, setMinTemp] = useState(null);
   const [maxTemp, setMaxTemp] = useState(null);
   const [cityData, setCitiesData] = useState(null);
@@ -96,6 +96,6 @@ function HomePage() {
       </header>
     </div>
   );
-}
+};
 
-export default HomePage;
+export default VacationFinder;

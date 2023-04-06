@@ -1,6 +1,6 @@
 from flask import Flask, request
-from backend.get_cities import get_cities
-from backend.get_database import get_database
+from get_cities import get_cities
+from get_database import get_database
 
 api = Flask(__name__)
 

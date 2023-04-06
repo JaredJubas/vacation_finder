@@ -1,7 +1,7 @@
 import React from 'react';
-import Location from './location';
+import Location from './Location';
 
-function LocationList({ locations }) {
+const LocationList = ({ locations }) => {
   const countries = Object.keys(locations).sort();
   return (
     <table className="ui celled striped padded table">
@@ -33,6 +33,6 @@ function LocationList({ locations }) {
       </tbody>
     </table>
   );
-}
+};
 
 export default LocationList;
