@@ -122,59 +122,6 @@ const VacationFinder = () => {
         {cityData && <LocationList locations={cityData}></LocationList>}
       </div>
     </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <div className="container">
-    //       <label htmlFor="mintemp">Minimum Temperature: </label>
-    //       <input
-    //         type="text"
-    //         id="mintemp"
-    //         name="mintemp"
-    //         placeholder="Mintemp"
-    //         value={minTemp}
-    //         onChange={handleMinTemp}
-    //       ></input>
-    //       <br />
-    //       <label htmlFor="maxtemp">Maximum Temperature: </label>
-    //       <input
-    //         type="text"
-    //         id="maxtemp"
-    //         name="maxtemp"
-    //         placeholder="MaxTemp"
-    //         value={maxTemp}
-    //         onChange={handleMaxTemp}
-    //       ></input>
-    //       <br />
-    //       <label htmlFor="month">Month: </label>
-    //       <select name="month" id="month" required>
-    //         <option value="" disabled selected>
-    //           Select a month
-    //         </option>
-    //         <option value="jan">January</option>
-    //         <option value="feb">February</option>
-    //         <option value="mar">March</option>
-    //         <option value="apr">April</option>
-    //         <option value="may">May</option>
-    //         <option value="jun">June</option>
-    //         <option value="jul">July</option>
-    //         <option value="aug">August</option>
-    //         <option value="sep">September</option>
-    //         <option value="oct">October</option>
-    //         <option value="nov">November</option>
-    //         <option value="dec">December</option>
-    //       </select>
-    //       <br />
-    //       <button
-    //         onClick={() => getData(minTemp, maxTemp)}
-    //         className="submitButton"
-    //         disabled={minTemp === null || maxTemp === null}
-    //       >
-    //         Submit
-    //       </button>
-    //     </div>
-    //     {cityData && <LocationList locations={cityData}></LocationList>}
-    //   </header>
-    // </div>
   );
 };
 
