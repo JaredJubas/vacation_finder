@@ -1,14 +1,95 @@
-.App {
-  text-align: center;
+.vacation-page-container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.vacation-finder-container {
+  background: #F0F0F0;
+  flex: 1 1 auto;
+}
+
+.initial-message {
+  font-weight: 500;
+  font-size: 22px;
+  text-align: center;
+  padding: 50px;
+}
+
+.search-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 24px;
+  gap: 20px;
+  border-radius: 20px;
+  background: white;
+  margin: 15px auto;
+  max-width: 700px;
+}
+
+.search-components {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.min-temp-container, .max-temp-container, .month-container, .submit-container {
+  position: relative;
+  display: flex;
+  block-size: 2.7rem;
+}
+
+.min-temp, .max-temp {
+  font-family: 'Inter';
+  position: absolute;
+  padding-left: 5px;
+  padding-top: 3px;
+  font-size: 14px;
+}
+
+.min-temp-input, .max-temp-input, .month {
+  border: 1px solid #939596;
+  border-radius: 12px;
+  display: flex;
+  block-size: inherit;
+  width: 10rem;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.month {
+  padding-left: 15px;
+}
+
+input[type=text] {
+  padding-left: 25px;
+  padding-top: 15px;
+}
+
+input[type=text] {
+  display: flex;
+}
+
+.submit-button {
+  width: 80px;
+  height: 2.7rem;
+  background: black;
+  border-radius: 12px;
   color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+select {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+select:focus {
+  outline: 2px solid black;
 }

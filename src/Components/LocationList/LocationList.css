@@ -1,0 +1,31 @@
+.locations-container {
+  background: #E2E2E2;
+  padding: 20px 40px;
+}
+
+.country-dropdown {
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 0px 30px;
+}
+
+.caret {
+  display: flex;
+  align-items: center;
+}
+
+.caret-left, .caret-right {
+  height: 8px;
+  width: 6px;
+  border-right: 2px solid black;
+}
+.caret-right {
+  transform: skew(-45deg);
+}
+
+.caret-left {
+  transform: skew(45deg);
+}
