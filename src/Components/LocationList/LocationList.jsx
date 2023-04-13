@@ -1,56 +1,66 @@
 import React from 'react';
 import './LocationList.css';
-// import Location from './Location';
+import CitiesList from '../CitiesList/CitiesList';
+
+const showCities = (event) => {
+  const parent = event.target.parentElement;
+  const currentDisplay = parent.parentElement.lastChild.style.display;
+
+  // const caretDown = parent.children[2];
+  // const caretUp = parent.children[3];
+
+  if (currentDisplay === 'block') {
+    parent.parentElement.lastChild.style.display = 'none';
+
+    // caretUp.style.display = 'none';
+    // caretDown.style.display = 'block';
+  } else {
+    parent.parentElement.lastChild.style.display = 'block';
+
+    // caretDown.style.display = 'none';
+    // caretUp.style.display = 'block';
+  }
+};
 
 const LocationList = ({ locations }) => {
-  const countries = Object.keys(locations).sort();
+  const countries = Object.entries(locations).sort();
+  const totalCities = countries.reduce((acc, curr) => {
+    return acc + curr[1].length;
+  }, 0);
+
   return (
-    <div className="locations-container">
-      {countries.map((country, index) => {
-        const numCities = locations[country].length;
-        const numCitiesText = numCities === 1 ? 'City' : 'Cities';
-        return (
-          <div className="country-dropdown" key={index}>
-            <p className="country">{country}</p>
-            <p className="num-cities">
-              {numCities} {numCitiesText}
-            </p>
-            <div className="caret">
-              <div className="caret-left"></div>
-              <div className="caret-right"></div>
+    <div className="results-container">
+      <div className="results-header">
+        Found the following {totalCities} cities in {countries.length}{' '}
+        countries. <br></br> Click each dropdown to view the cities in that
+        country!
+      </div>
+      <div className="countries-container">
+        {countries.map(([country, cities]) => {
+          const numCities = cities.length;
+          const numCitiesText = numCities === 1 ? 'City' : 'Cities';
+          return (
+            <div
+              className="country-dropdown-container"
+              key={country}
+              onClick={(event) => showCities(event)}
+            >
+              <div className="country-dropdown">
+                <div className="country">{country}</div>
+                <div className="num-cities">
+                  {numCities} {numCitiesText}
+                </div>
+                <div className="caret-down">
+                  <div className="caret-left"></div>
+                  <div className="caret-right"></div>
+                </div>
+              </div>
+              {<CitiesList cities={cities}></CitiesList>}
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
-    // <table className="ui celled striped padded table">
-    //   <thead>
-    //     <tr>
-    //       <th>
-    //         <h3 className="ui center aligned header">Country</h3>
-    //       </th>
-    //       <th>
-    //         <h3 className="ui center aligned header">Number</h3>
-    //       </th>
-    //       <th>
-    //         <h3 className="ui center aligned header">City</h3>
-    //       </th>
-    //       <th>
-    //         <h3 className="ui center aligned header">Weather (celsius)</h3>
-    //       </th>
-    //     </tr>
-    //   </thead>
-    //   <tbody>
-    //     {countries.map((country, index) => {
-    //       return (
-    //         <tr key={index}>
-    //           <th>{country}</th>
-    //           {<Location locations={locations[country]}></Location>}
-    //         </tr>
-    //       );
-    //     })}
-    //   </tbody>
-    // </table>
   );
 };
 

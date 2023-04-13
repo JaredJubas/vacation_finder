@@ -1,0 +1,26 @@
+.cities-dropdown-container {
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  padding: 0 30px;
+  display: none;
+}
+
+.cities-header {
+  border-top: 2px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  display: flex;
+}
+
+.average-header, .temperature {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.city-row {
+  display: flex;
+  padding: 10px 0;
+}

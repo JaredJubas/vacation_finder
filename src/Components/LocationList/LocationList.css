@@ -1,20 +1,54 @@
-.locations-container {
+.results-container {
   background: #E2E2E2;
-  padding: 20px 40px;
+}
+
+.results-header {
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  padding: 30px 0px;
+  margin: 0 20vw;
+}
+
+.countries-container {
+  margin: 0 20vw;
+  padding-bottom: 20px;
+}
+
+.country-dropdown-container {
+  margin-bottom: 20px;
 }
 
 .country-dropdown {
   background: white;
   border-radius: 20px;
   display: flex;
-  margin-bottom: 20px;
   justify-content: space-between;
   padding: 0px 30px;
+  }
+
+.country-dropdown .num-cities {
+  flex-grow: 1;
+  text-align: center;
 }
 
-.caret {
+.country {
+  max-width: 40%;
+  padding: 16px 0;
+}
+
+.num-cities {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.caret-down {
   display: flex;
   align-items: center;
+  padding: 16px 0;
 }
 
 .caret-left, .caret-right {
@@ -28,4 +62,8 @@
 
 .caret-left {
   transform: skew(45deg);
+}
+
+.caret-up {
+  display: none;
 }
