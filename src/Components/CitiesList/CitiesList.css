@@ -24,3 +24,13 @@
   display: flex;
   padding: 10px 0;
 }
+
+@media screen and (max-width:500px) {
+  .countries-container {
+    margin: 0 5vw;
+  }
+
+  .city {
+    max-width: 40%;
+  }
+}
