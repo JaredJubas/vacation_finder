@@ -1,9 +1,13 @@
 import './ErrorMessage.css';
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ errorMessage }) => {
+  if (!errorMessage) {
+    return;
+  }
+
   return (
     <div className="error-container">
-      <p className="error-message">Please fill in all fields</p>
+      <p className="error-message">{errorMessage}</p>
     </div>
   );
 };

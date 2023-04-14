@@ -5,7 +5,7 @@
 }
 
 .vacation-finder-container {
-  background: #E2E2E2;
+  background: #F0F0F0;
   flex: 1 1 auto;
 }
 
@@ -16,8 +16,11 @@
   padding: 50px;
 }
 
+.error-container {
+  width: 80vw;
+}
+
 .search-bar-container {
-  background: #F0F0F0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,13 +38,12 @@
 .search-components {
   display: flex;
   flex-direction: row;
-  align-items: center;
   padding: 0px;
   gap: 16px;
   flex-wrap: wrap;
 }
 
-.min-temp-container, .max-temp-container, .month-container, .submit-container {
+.min-temp-container, .max-temp-container, .submit-container {
   position: relative;
   display: flex;
   block-size: 2.7rem;
@@ -55,7 +57,7 @@
   font-size: 14px;
 }
 
-.min-temp-input, .max-temp-input, .month {
+.min-temp-input, .max-temp-input {
   border: 1px solid #939596;
   border-radius: 12px;
   display: flex;
@@ -65,8 +67,50 @@
   box-sizing: border-box;
 }
 
-.month {
-  padding-left: 15px;
+.month-dropdown {
+  border: 1px solid #939596;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+  background: white;
+  block-size: 2.7rem;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140px;
+}
+
+.month-container {
+  position: relative;
+  display: inline-block;
+}
+
+.months {
+  background-color: white;
+  border: 1px solid #939596;
+  border-radius: 0 0 12px 12px;
+}
+
+.months div {
+  color: black;
+  padding: 2px 16px;
+  display: block;
+}
+
+.months div:hover {
+  background-color: #E3F5FF;
+  cursor: pointer;
+}
+
+/* Add this class to the dropdown content when the dropdown is clicked*/
+.show {
+  display:block;
+}
+
+.bottom-flat {
+  border-radius: 12px 12px 0 0;
+  border: 2px solid black;
 }
 
 input[type=text] {

@@ -4,24 +4,23 @@ import './VacationFinder.css';
 import Navbar from '../Navbar/Navbar';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LocationList from '../LocationList/LocationList';
+import MonthDropdown from '../MonthDropdown/MonthDropdown';
 
 const VacationFinder = () => {
   const [minTemp, setMinTemp] = useState(null);
   const [maxTemp, setMaxTemp] = useState(null);
+  const [month, setMonth] = useState(null);
   const [cityData, setCitiesData] = useState(null);
   const [firstTime, setFirstTime] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   function getData(minTemp, maxTemp) {
-    const month = document.getElementsByClassName('month')[0].value;
-
     if (!minTemp || !maxTemp || !month) {
-      document.getElementsByClassName('error-container')[0].style.display =
-        'flex';
+      setErrorMessage('Please fill out all search fields.');
       return;
-    } else {
-      document.getElementsByClassName('error-container')[0].style.display =
-        'none';
     }
+
+    setErrorMessage(null);
 
     axios({
       method: 'GET',
@@ -40,6 +39,7 @@ const VacationFinder = () => {
       .catch((error) => {
         if (error.response) {
           console.log(error.response);
+          setErrorMessage('An error occurred. Please try again later.');
         }
       });
   }
@@ -51,7 +51,11 @@ const VacationFinder = () => {
   function handleMaxTemp(event) {
     setMaxTemp(event.target.value);
   }
-  cityData;
+
+  function handleSelectMonth(newValue, newLabel) {
+    setMonth(newValue);
+    document.getElementsByClassName('month-dropdown')[0].innerText = newLabel;
+  }
 
   return (
     <div className="vacation-page-container">
@@ -64,7 +68,7 @@ const VacationFinder = () => {
               Search for vacation destinations that works for you!
             </p>
           )}
-          <ErrorMessage />
+          <ErrorMessage errorMessage={errorMessage} />
           <div className="search-container">
             <div className="search-components">
               <div className="min-temp-container">
@@ -91,25 +95,7 @@ const VacationFinder = () => {
                   onChange={handleMaxTemp}
                 ></input>
               </div>
-              <div className="month-container">
-                <select className="month" id="month" required>
-                  <option value="" disabled selected>
-                    Select a month
-                  </option>
-                  <option value="jan">January</option>
-                  <option value="feb">February</option>
-                  <option value="mar">March</option>
-                  <option value="apr">April</option>
-                  <option value="may">May</option>
-                  <option value="jun">June</option>
-                  <option value="jul">July</option>
-                  <option value="aug">August</option>
-                  <option value="sep">September</option>
-                  <option value="oct">October</option>
-                  <option value="nov">November</option>
-                  <option value="dec">December</option>
-                </select>
-              </div>
+              <MonthDropdown onSelect={handleSelectMonth} />
               <div className="submit-container">
                 <button
                   onClick={() => getData(minTemp, maxTemp)}
