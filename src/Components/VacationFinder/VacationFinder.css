@@ -67,47 +67,6 @@
   box-sizing: border-box;
 }
 
-.month-dropdown {
-  border: 1px solid #939596;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 12px;
-  background: white;
-  block-size: 2.7rem;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 140px;
-}
-
-.month-container {
-  position: relative;
-  display: inline-block;
-}
-
-.months {
-  background-color: white;
-  border: 1px solid #939596;
-  border-radius: 0 0 12px 12px;
-}
-
-.months div {
-  color: black;
-  padding: 2px 16px;
-  display: block;
-}
-
-.months div:hover {
-  background-color: #E3F5FF;
-  cursor: pointer;
-}
-
-/* Add this class to the dropdown content when the dropdown is clicked*/
-.show {
-  display:block;
-}
-
 .bottom-flat {
   border-radius: 12px 12px 0 0;
   border: 2px solid black;

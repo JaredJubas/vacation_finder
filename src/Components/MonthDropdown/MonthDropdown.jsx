@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { MONTHS } from '../../utils/months';
+import './MonthDropdown.css';
 
 const Month = ({ id, name, onClick }) => {
   return (
