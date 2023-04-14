@@ -33,3 +33,8 @@
   background-color: #E3F5FF;
   cursor: pointer;
 }
+
+.bottom-flat {
+  border-radius: 12px 12px 0 0;
+  border: 2px solid black;
+}

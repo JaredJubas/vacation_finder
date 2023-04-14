@@ -37,6 +37,16 @@ const MonthDropdown = ({ onSelect }) => {
     };
   }, []);
 
+  if (isOpen) {
+    document
+      .getElementsByClassName('month-dropdown')[0]
+      .classList.add('bottom-flat');
+  } else {
+    document
+      .getElementsByClassName('month-dropdown')[0]
+      .classList.remove('bottom-flat');
+  }
+
   return (
     <div className="month-container">
       <div onClick={handleToggle} className="month-dropdown">
