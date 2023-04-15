@@ -1,30 +1,22 @@
-import React from 'react';
-import './LocationList.css';
+import React, { useState } from 'react';
+import './CountriesList.css';
 import CitiesList from '../CitiesList/CitiesList';
 
-const showCities = (event) => {
-  // TODO is there an easier way to access the elements?
-  const parent = event.target.parentElement;
-  const currentDisplay = parent.parentElement.lastChild.style.display;
+const CountriesList = ({ locations }) => {
+  const [openDropdowns, setOpenDropdowns] = useState([]);
 
-  const caret = parent.children[2];
+  const toggleDropdown = (country) => {
+    setOpenDropdowns((prevOpenDropdowns) => {
+      if (prevOpenDropdowns.includes(country)) {
+        // If the country is already open, close it
+        return prevOpenDropdowns.filter((c) => c !== country);
+      } else {
+        // If the country is closed, open it
+        return [...prevOpenDropdowns, country];
+      }
+    });
+  };
 
-  if (currentDisplay === 'block') {
-    // Hide the dropdown
-    parent.parentElement.lastChild.style.display = 'none';
-
-    // Rotate caret to point down
-    caret.style.transform = 'rotate(0deg)';
-  } else {
-    // Show the dropdown
-    parent.parentElement.lastChild.style.display = 'block';
-
-    // Rotate caret to point up
-    caret.style.transform = 'rotate(180deg)';
-  }
-};
-
-const LocationList = ({ locations }) => {
   // Get a sorted list of countries so we can display it in alphabetical order
   const countries = Object.entries(locations).sort();
 
@@ -37,8 +29,8 @@ const LocationList = ({ locations }) => {
       {totalCities > 0 ? (
         <div className="results-header">
           Found the following {totalCities} cities in {countries.length}{' '}
-          countries. <br></br> Click each dropdown to view the cities in that
-          country!
+          countries. <br />
+          Click each dropdown to view the cities in that country!
         </div>
       ) : (
         <div className="results-header">
@@ -49,11 +41,16 @@ const LocationList = ({ locations }) => {
         {countries.map(([country, cities]) => {
           const numCities = cities.length;
           const numCitiesText = numCities === 1 ? 'City' : 'Cities';
+          const isOpen = openDropdowns.includes(country);
+          const dropdownClasses = isOpen
+            ? 'country-dropdown bottom-flat'
+            : 'country-dropdown';
+
           return (
             <div className="country-dropdown-container" key={country}>
               <div
-                className="country-dropdown"
-                onClick={(event) => showCities(event)}
+                className={dropdownClasses}
+                onClick={() => toggleDropdown(country)}
               >
                 <div className="country">{country}</div>
                 <div className="num-cities">
@@ -64,7 +61,9 @@ const LocationList = ({ locations }) => {
                   <div className="caret-right"></div>
                 </div>
               </div>
-              {<CitiesList cities={cities}></CitiesList>}
+              {isOpen && (
+                <CitiesList cities={cities} isOpen={isOpen}></CitiesList>
+              )}
             </div>
           );
         })}
@@ -73,4 +72,4 @@ const LocationList = ({ locations }) => {
   );
 };
 
-export default LocationList;
+export default CountriesList;

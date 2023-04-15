@@ -28,6 +28,7 @@
   border-top: none;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 0 0 12px 12px;
+  z-index: 1;
 }
 
 .months > div {
@@ -42,10 +43,4 @@
 .bottom-flat {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border: 2px solid black;
-}
-
-.caret-flip {
-  transform: rotate(180deg);
-  transform-origin: 75% 50%;
 }

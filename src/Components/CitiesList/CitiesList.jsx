@@ -1,9 +1,14 @@
 import './CitiesList.css';
 
-const CitiesList = ({ cities }) => {
+const CitiesList = ({ cities, isOpen }) => {
   const citiesSorted = cities.map(({ city }) => city).sort();
+
+  const citiesDropdownClasses = isOpen
+    ? 'cities-dropdown-container cities-visible'
+    : 'cities-dropdown-container';
+
   return (
-    <div className="cities-dropdown-container">
+    <div className={citiesDropdownClasses}>
       <div className="cities-header">
         <div className="city-header">City</div>
         <div className="average-header">Average (°C)</div>

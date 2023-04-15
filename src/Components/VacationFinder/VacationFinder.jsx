@@ -3,7 +3,7 @@ import axios from 'axios';
 import './VacationFinder.css';
 import Navbar from '../Navbar/Navbar';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import LocationList from '../LocationList/LocationList';
+import CountriesList from '../CountriesList/CountriesList';
 import MonthDropdown from '../MonthDropdown/MonthDropdown';
 
 const VacationFinder = () => {
@@ -106,7 +106,7 @@ const VacationFinder = () => {
             </div>
           </div>
         </div>
-        {cityData && <LocationList locations={cityData}></LocationList>}
+        {cityData && <CountriesList locations={cityData}></CountriesList>}
       </div>
     </div>
   );
