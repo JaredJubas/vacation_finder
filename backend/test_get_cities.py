@@ -55,7 +55,7 @@ database["cities"].insert_many([toronto, ottawa])
 def test_invalid_temp():
     min_temp = '1'
     max_temp = '0'
-    month = 'jan'
+    month = 'January'
 
     with pytest.raises(AssertionError):
         get_cities(min_temp, max_temp, month, database)
@@ -64,7 +64,7 @@ def test_invalid_temp():
 def test_invalid_month():
     min_temp = '1'
     max_temp = '5'
-    month = 'janv'
+    month = 'Januaryv'
 
     with pytest.raises(AssertionError):
         get_cities(min_temp, max_temp, month, database)
@@ -73,7 +73,7 @@ def test_invalid_month():
 def test_invalid_month_casing():
     min_temp = '1'
     max_temp = '5'
-    month = 'Jan'
+    month = 'january'
 
     with pytest.raises(AssertionError):
         get_cities(min_temp, max_temp, month, database)
@@ -82,7 +82,7 @@ def test_invalid_month_casing():
 def test_no_cities_valid():
     min_temp = '1'
     max_temp = '5'
-    month = 'feb'
+    month = 'February'
 
     cities = get_cities(min_temp, max_temp, month, database)
 
@@ -92,7 +92,7 @@ def test_no_cities_valid():
 def test_some_cities_valid():
     min_temp = '10'
     max_temp = '12'
-    month = 'may'
+    month = 'May'
 
     cities = get_cities(min_temp, max_temp, month, database)
 
@@ -102,7 +102,7 @@ def test_some_cities_valid():
 def test_all_cities_valid():
     min_temp = '20'
     max_temp = '23'
-    month = 'aug'
+    month = 'August'
 
     cities = get_cities(min_temp, max_temp, month, database)
 

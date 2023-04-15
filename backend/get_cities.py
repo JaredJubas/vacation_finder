@@ -13,8 +13,7 @@ def get_cities(min_temp, max_temp, month, dbname):
         Preconditions:
             min_temp: str with value <= max_temp
             max_temp: str with value >= max_temp
-            month: str with value in ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 
-                                      'sep', 'oct', 'nov', 'dec']
+            month: str with value that is a valid month of the year
 
         Parameters:
             min_temp (str): A string representing the minimum temperature
@@ -29,17 +28,31 @@ def get_cities(min_temp, max_temp, month, dbname):
             city and the temperature for the provided month.
 
     '''
-    valid_months = ['jan', 'feb', 'mar', 'apr', 'may',
-                    'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+    valid_months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ]
 
     assert month in valid_months
 
     assert min_temp <= max_temp
 
+    shortened_month = month[:3].lower()
+
     cities_collection = dbname["cities"]
 
     cities = list(cities_collection.find({
-        f"months.{month}.temperature": {
+        f"months.{shortened_month}.temperature": {
             "$lte": float(max_temp),
             "$gte": float(min_temp)
         }
@@ -47,7 +60,7 @@ def get_cities(min_temp, max_temp, month, dbname):
         '_id': 0,
         'city': 1,
         'country': 1,
-        f"months.{month}.temperature": 1
+        f"months.{shortened_month}.temperature": 1
     }))
 
     cities_grouped = {}
@@ -55,7 +68,7 @@ def get_cities(min_temp, max_temp, month, dbname):
     for city_dict in cities:
         country = city_dict['country']
         city_to_insert = {
-            'city': city_dict['city'], 'temperature': city_dict['months'][month]['temperature']
+            'city': city_dict['city'], 'temperature': city_dict['months'][shortened_month]['temperature']
         }
         if country in cities_grouped:
             cities_grouped[country].append(city_to_insert)
