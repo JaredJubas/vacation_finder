@@ -8,9 +8,12 @@
   align-items: center;
   justify-content: space-between;
   width: 150px;
-  padding: 10px;
+  padding: 0 10px;
   cursor: pointer;
   border-radius: 12px;
+  width: 10rem;
+  box-sizing: border-box;
+  block-size: 2.7rem;
 }
 
 .months {

@@ -10,7 +10,7 @@ const Month = ({ month, onClick }) => {
   );
 };
 
-const MonthDropdown = () => {
+const MonthDropdown = ({ onSelectMonth }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(null);
 
@@ -38,6 +38,11 @@ const MonthDropdown = () => {
     document
       .getElementsByClassName('month-dropdown')[0]
       .classList.remove('bottom-flat');
+
+    // Call the onSelectMonth callback function with the selected month
+    if (typeof onSelectMonth === 'function') {
+      onSelectMonth(newLabel);
+    }
   }
 
   function handleOutsideClick(event) {

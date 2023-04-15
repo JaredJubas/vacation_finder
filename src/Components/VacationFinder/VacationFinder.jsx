@@ -12,11 +12,9 @@ const VacationFinder = () => {
   const [cityData, setCitiesData] = useState(null);
   const [firstTime, setFirstTime] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [month, setSelectedMonth] = useState(null);
 
   function getData(minTemp, maxTemp) {
-    const month =
-      document.getElementsByClassName('month-dropdown')[0].innerText;
-
     if (!minTemp || !maxTemp || !month) {
       setErrorMessage('Please fill out all search fields.');
       return;
@@ -52,6 +50,10 @@ const VacationFinder = () => {
 
   function handleMaxTemp(event) {
     setMaxTemp(event.target.value);
+  }
+
+  function handleSelectMonth(selectedMonth) {
+    setSelectedMonth(selectedMonth);
   }
 
   return (
@@ -92,7 +94,7 @@ const VacationFinder = () => {
                   onChange={handleMaxTemp}
                 ></input>
               </div>
-              <MonthDropdown />
+              <MonthDropdown onSelectMonth={handleSelectMonth} />
               <div className="submit-container">
                 <button
                   onClick={() => getData(minTemp, maxTemp)}
