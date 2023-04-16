@@ -14,9 +14,8 @@
 
 .average-header, .temperature {
   position: absolute;
-  left: 0;
-  width: 100%;
-  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .city-row {
