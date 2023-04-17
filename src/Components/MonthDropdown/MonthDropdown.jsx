@@ -19,8 +19,8 @@ const MonthDropdown = ({ onSelectMonth }) => {
     event.stopPropagation();
     setIsOpen(!isOpen);
 
-    const caret = document.getElementsByClassName('caret')[0];
-    caret.classList.toggle('caret-flip');
+    const caret = document.getElementsByClassName('caret-down')[0];
+    caret.classList.toggle('caret-up');
 
     document
       .getElementsByClassName('month-dropdown')[0]
@@ -32,8 +32,8 @@ const MonthDropdown = ({ onSelectMonth }) => {
     setIsOpen(false);
     setSelectedMonth(newLabel);
 
-    const caret = document.getElementsByClassName('caret')[0];
-    caret.classList.remove('caret-flip');
+    const caret = document.getElementsByClassName('caret-down')[0];
+    caret.classList.remove('caret-up');
 
     document
       .getElementsByClassName('month-dropdown')[0]
@@ -49,8 +49,8 @@ const MonthDropdown = ({ onSelectMonth }) => {
     if (!event.target.matches('.month-dropdown')) {
       setIsOpen(false);
 
-      const caret = document.getElementsByClassName('caret')[0];
-      caret.classList.remove('caret-flip');
+      const caret = document.getElementsByClassName('caret-down')[0];
+      caret.classList.remove('caret-up');
 
       document
         .getElementsByClassName('month-dropdown')[0]
@@ -69,10 +69,7 @@ const MonthDropdown = ({ onSelectMonth }) => {
     <div onClick={handleToggle} className="month-container">
       <div className="month-dropdown">
         {selectedMonth ? selectedMonth : 'Month'}
-        <div className="caret">
-          <div className="caret-left"></div>
-          <div className="caret-right"></div>
-        </div>
+        <div className="caret-down"></div>
       </div>
       {isOpen && (
         <div className="months" required>

@@ -12,6 +12,12 @@
   display: flex;
 }
 
+.city-header, .average-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
 .average-header, .temperature {
   position: absolute;
   left: 50%;
@@ -25,6 +31,31 @@
 
 .cities-visible {
   display: block;
+}
+
+.arrow-up-down {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow-up,
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.arrow-up {
+  border-bottom: 5px solid #2e2e2e;
+  margin-bottom: 1px;
+}
+
+.arrow-down {
+  border-top: 5px solid #2e2e2e;
+  margin-top: 1px;
 }
 
 @media screen and (max-width:500px) {

@@ -46,20 +46,19 @@ const CountriesList = ({ locations }) => {
             ? 'country-dropdown bottom-flat'
             : 'country-dropdown';
 
+          const caretClass = isOpen ? 'caret-up' : 'caret-down';
+
           return (
             <div className="country-dropdown-container" key={country}>
               <div
                 className={dropdownClasses}
                 onClick={() => toggleDropdown(country)}
               >
-                <div className="country">{country}</div>
-                <div className="num-cities">
+                <span className="country">{country}</span>
+                <span className="num-cities">
                   {numCities} {numCitiesText}
-                </div>
-                <div className="caret">
-                  <div className="caret-left"></div>
-                  <div className="caret-right"></div>
-                </div>
+                </span>
+                <span className={caretClass}></span>
               </div>
               {isOpen && (
                 <CitiesList cities={cities} isOpen={isOpen}></CitiesList>

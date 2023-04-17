@@ -40,26 +40,26 @@
   padding: 16px 0;
 }
 
-.caret {
-  display: flex;
-  align-items: center;
-}
-
-.caret-left, .caret-right {
-  height: 8px;
-  width: 6px;
-  border-right: 2px solid black;
-}
-.caret-right {
-  transform: skew(-45deg);
-}
-
-.caret-left {
-  transform: skew(45deg);
-}
-
 .bottom-flat {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom: 2px solid black;
+}
+
+.caret-down,
+.caret-up {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+}
+
+.caret-down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.caret-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
 }
