@@ -7,7 +7,6 @@ import CountriesList from '../CountriesList/CountriesList';
 import MonthDropdown from '../MonthDropdown/MonthDropdown';
 
 const apiUrl = process.env.REACT_APP_API_URL;
-console.log(apiUrl);
 
 const VacationFinder = () => {
   const [minTemp, setMinTemp] = useState(null);
@@ -27,7 +26,7 @@ const VacationFinder = () => {
 
     axios({
       method: 'GET',
-      url: `${apiUrl}/cities`,
+      url: `https://${apiUrl}/cities`,
       params: {
         minTemp,
         maxTemp,
