@@ -1,1 +1,1 @@
-web: cd backend && Flask run
+web: python backend/base.py
