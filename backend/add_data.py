@@ -8,7 +8,7 @@ Functions:
 
 import pandas as pd
 
-from backend.get_database import get_database
+from get_database import get_database
 
 
 def convert_temp_to_float(temp_string):

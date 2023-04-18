@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
-from backend.get_cities import get_cities
-from backend.get_database import get_database
+from get_cities import get_cities
+from get_database import get_database
 
 api = Flask(__name__)
 CORS(api)
