@@ -45,7 +45,10 @@ def get_cities(min_temp, max_temp, month, dbname):
 
     assert month in valid_months
 
-    assert min_temp <= max_temp
+    float_min_temp = float(min_temp)
+    float_max_temp = float(max_temp)
+
+    assert float_min_temp <= float_max_temp
 
     shortened_month = month[:3].lower()
 
@@ -53,8 +56,8 @@ def get_cities(min_temp, max_temp, month, dbname):
 
     cities = list(cities_collection.find({
         f"months.{shortened_month}.temperature": {
-            "$lte": float(max_temp),
-            "$gte": float(min_temp)
+            "$lte": float_max_temp,
+            "$gte": float_min_temp
         }
     }, {
         '_id': 0,
