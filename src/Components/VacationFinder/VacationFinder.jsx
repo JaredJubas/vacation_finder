@@ -7,6 +7,7 @@ import CountriesList from '../CountriesList/CountriesList';
 import MonthDropdown from '../MonthDropdown/MonthDropdown';
 
 const apiUrl = process.env.REACT_APP_API_URL;
+console.log(apiUrl);
 
 const VacationFinder = () => {
   const [minTemp, setMinTemp] = useState(null);
