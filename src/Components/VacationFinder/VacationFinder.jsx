@@ -24,9 +24,12 @@ const VacationFinder = () => {
 
     setErrorMessage(null);
 
+    // If apiUrl is not defined then it's on local
+    const url = apiUrl ? `https://${apiUrl}/cities` : '/cities';
+
     axios({
       method: 'GET',
-      url: `https://${apiUrl}/cities`,
+      url: url,
       params: {
         minTemp,
         maxTemp,
