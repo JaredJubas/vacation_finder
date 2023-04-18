@@ -4,7 +4,7 @@ from get_database import get_database
 from flask_cors import CORS
 
 api = Flask(__name__)
-CORS(api, resources={r"/*": {"origins": "*"}}, headers=['Content-Type'])
+CORS(api)
 
 
 @api.route('/cities')
