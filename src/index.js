@@ -6,7 +6,7 @@ import HomePage from './Components/Home/HomePage';
 import VacationFinder from './Components/VacationFinder/VacationFinder';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/vacationFinder" element={<VacationFinder />} />
