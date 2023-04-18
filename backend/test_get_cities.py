@@ -6,7 +6,7 @@ Test functions for the gte_cities function
 import pytest
 import mongomock
 
-from get_cities import get_cities
+from backend.get_cities import get_cities
 
 
 database = mongomock.MongoClient().db
