@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { MONTHS } from '../../utils/months';
 import './MonthDropdown.css';
 
@@ -14,49 +14,31 @@ const MonthDropdown = ({ onSelectMonth }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(null);
 
-  function handleToggle(event) {
-    // Prevent handleOutsideClick from being triggered
-    event.stopPropagation();
-    setIsOpen(!isOpen);
+  const handleToggle = useCallback(
+    (event) => {
+      event.stopPropagation();
+      setIsOpen(!isOpen);
+    },
+    [isOpen]
+  );
 
-    const caret = document.getElementsByClassName('caret-down')[0];
-    caret.classList.toggle('caret-up');
+  const handleSelect = useCallback(
+    (event) => {
+      event.stopPropagation();
+      const newLabel = event.target.innerHTML;
+      setIsOpen(false);
+      setSelectedMonth(newLabel);
 
-    document
-      .getElementsByClassName('month-dropdown')[0]
-      .classList.toggle('bottom-flat');
-  }
-
-  function handleSelect(event) {
-    const newLabel = event.target.innerHTML;
-    setIsOpen(false);
-    setSelectedMonth(newLabel);
-
-    const caret = document.getElementsByClassName('caret-down')[0];
-    caret.classList.remove('caret-up');
-
-    document
-      .getElementsByClassName('month-dropdown')[0]
-      .classList.remove('bottom-flat');
-
-    // Call the onSelectMonth callback function with the selected month
-    if (typeof onSelectMonth === 'function') {
       onSelectMonth(newLabel);
-    }
-  }
+    },
+    [onSelectMonth]
+  );
 
-  function handleOutsideClick(event) {
+  const handleOutsideClick = useCallback((event) => {
     if (!event.target.matches('.month-dropdown')) {
       setIsOpen(false);
-
-      const caret = document.getElementsByClassName('caret-down')[0];
-      caret.classList.remove('caret-up');
-
-      document
-        .getElementsByClassName('month-dropdown')[0]
-        .classList.remove('bottom-flat');
     }
-  }
+  }, []);
 
   useEffect(() => {
     window.addEventListener('click', handleOutsideClick);
@@ -65,11 +47,16 @@ const MonthDropdown = ({ onSelectMonth }) => {
     };
   }, []);
 
+  const dropdownClassNames = ['month-dropdown'];
+  if (isOpen) {
+    dropdownClassNames.push('bottom-flat');
+  }
+
   return (
     <div onClick={handleToggle} className="month-container">
-      <div className="month-dropdown">
+      <div className={dropdownClassNames.join(' ')}>
         {selectedMonth ? selectedMonth : 'Month'}
-        <div className="caret-down"></div>
+        <div className={`caret-down${isOpen ? ' caret-up' : ''}`}></div>
       </div>
       {isOpen && (
         <div className="months" required>

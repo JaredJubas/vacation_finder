@@ -1,57 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './CitiesList.css';
 
 const CitiesList = ({ cities, isOpen }) => {
-  const [sortOrder, setSortOrder] = useState(null);
+  const [sortOrder, setSortOrder] = useState({ header: null, order: 'asc' });
 
   const toggleSortOrder = (header) => {
-    if (sortOrder && sortOrder.header === header) {
-      // If the header was already selected for sorting, toggle the order
-      setSortOrder({
-        header,
-        order: sortOrder.order === 'asc' ? 'desc' : 'asc',
-      });
-    } else {
-      // If a new header is selected for sorting, default to ascending order
-      setSortOrder({ header, order: 'asc' });
-    }
+    setSortOrder((prevSortOrder) => {
+      // If selected header is same as previously selected header then flip order
+      // Otherwise default header to ascending
+      const order =
+        prevSortOrder.header === header
+          ? prevSortOrder.order === 'asc'
+            ? 'desc'
+            : 'asc'
+          : 'asc';
+      return { header, order };
+    });
   };
 
-  const sortCities = (cities, header, order) => {
-    // Default sort order should be to sort cities in ascending order
-    // On initial render, header and order will be undefined
-    return cities.sort((a, b) => {
-      if (header === 'temperature') {
-        return order === 'desc'
+  const sortedCities = useMemo(() => {
+    // Sort cities by header or temperature, depending on user selection
+    // Default is to sort city names in ascending order
+    const sorted = [...cities].sort((a, b) => {
+      if (sortOrder.header === 'temperature') {
+        return sortOrder.order === 'desc'
           ? b.temperature - a.temperature
           : a.temperature - b.temperature;
       } else {
-        return order === 'desc'
+        return sortOrder.order === 'desc'
           ? b.city.localeCompare(a.city)
           : a.city.localeCompare(b.city);
       }
     });
-  };
-
-  const sortedCities = sortCities(cities, sortOrder?.header, sortOrder?.order);
+    return sorted;
+  }, [cities, sortOrder]);
 
   const citiesDropdownClasses = isOpen
     ? 'cities-dropdown-container cities-visible'
     : 'cities-dropdown-container';
 
-  const getTooltipText = (header, sortOrder) => {
+  // Tooltip text so the user can see what will happen if you click a header
+  const getTooltipText = (header) => {
     const ascendingText = 'Sort ascending';
     const descendingText = 'Sort descending';
 
-    if (header !== sortOrder?.header) {
+    if (header !== sortOrder.header) {
       return ascendingText;
     }
 
-    return sortOrder?.order === 'asc' ? descendingText : ascendingText;
+    return sortOrder.order === 'asc' ? descendingText : ascendingText;
   };
 
-  const cityTooltip = getTooltipText('city', sortOrder);
-  const temperatureTooltip = getTooltipText('temperature', sortOrder);
+  const cityTooltip = getTooltipText('city');
+  const temperatureTooltip = getTooltipText('temperature');
 
   return (
     <div className={citiesDropdownClasses}>
@@ -62,10 +63,10 @@ const CitiesList = ({ cities, isOpen }) => {
           onClick={() => toggleSortOrder('city')}
         >
           <span>City</span>
-          {sortOrder?.header === 'city' && sortOrder.order === 'asc' && (
+          {sortOrder.header === 'city' && sortOrder.order === 'asc' && (
             <span className="arrow-up"></span>
           )}
-          {sortOrder?.header !== 'city' && (
+          {sortOrder.header !== 'city' && (
             <>
               <span className="arrow-up-down">
                 <span className="arrow-up"></span>
@@ -73,7 +74,7 @@ const CitiesList = ({ cities, isOpen }) => {
               </span>
             </>
           )}
-          {sortOrder?.header === 'city' && sortOrder.order !== 'asc' && (
+          {sortOrder.header === 'city' && sortOrder.order !== 'asc' && (
             <span className="arrow-down"></span>
           )}
         </div>
@@ -83,10 +84,10 @@ const CitiesList = ({ cities, isOpen }) => {
           onClick={() => toggleSortOrder('temperature')}
         >
           <span>Average (°C)</span>
-          {sortOrder?.header === 'temperature' && sortOrder.order === 'asc' && (
+          {sortOrder.header === 'temperature' && sortOrder.order === 'asc' && (
             <span className="arrow-up"></span>
           )}
-          {sortOrder?.header !== 'temperature' && (
+          {sortOrder.header !== 'temperature' && (
             <>
               <span className="arrow-up-down">
                 <span className="arrow-up"></span>
@@ -94,7 +95,7 @@ const CitiesList = ({ cities, isOpen }) => {
               </span>
             </>
           )}
-          {sortOrder?.header === 'temperature' && sortOrder.order !== 'asc' && (
+          {sortOrder.header === 'temperature' && sortOrder.order !== 'asc' && (
             <span className="arrow-down"></span>
           )}
         </div>
