@@ -36,9 +36,8 @@ const VacationFinder = () => {
         month,
       },
     })
-      .then((response) => {
-        const res = response.data;
-        setCitiesData(res);
+      .then(({ data }) => {
+        setCitiesData(data);
         setFirstTime(false);
       })
       .catch((error) => {
