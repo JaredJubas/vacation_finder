@@ -4,7 +4,7 @@
 
 Vacation Finder is to make finding vacation destinations easier. If you want to travel but are unsure of where to go, this app is designed to help! Just put in a few inputs to help narrow down the search and see all the results that pop up! Currently it only supports temperature and weather, but many more features are to come soon!
 
-The app is being hosted hosted [here](vacationfinder.netlify.app/).
+The app is being hosted hosted [here](https://vacationfinder.netlify.app/).
 
 ### Built With
 
