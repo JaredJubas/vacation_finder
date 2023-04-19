@@ -96,7 +96,7 @@ def test_some_cities_valid():
 
     cities = get_cities(min_temp, max_temp, month, database)
 
-    assert cities == {}
+    assert cities == {'Canada': [{'city': 'Toronto', 'temperature': 10}]}
 
 
 def test_all_cities_valid():
