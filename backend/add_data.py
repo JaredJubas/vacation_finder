@@ -7,7 +7,6 @@ Functions:
 '''
 
 import pandas as pd
-
 from get_database import get_database
 
 
@@ -66,7 +65,7 @@ def add_data_to_db(dfs):
     cities_collection = dbname["cities"]
 
     # Iterate over every table in dfs
-    for _, dataframe in enumerate(dfs):
+    for dataframe in dfs:
 
         # Iterate over every row in the table
         for _, row in dataframe.iterrows():
@@ -74,44 +73,13 @@ def add_data_to_db(dfs):
             current_country = row['Country']
 
             # Need to get the temperature for each month and convert them to floats
-            months = {
-                "jan": {
-                    "temperature": convert_temp_to_float(row['Jan'])
-                },
-                "feb": {
-                    "temperature": convert_temp_to_float(row['Feb'])
-                },
-                "mar": {
-                    "temperature": convert_temp_to_float(row['Mar'])
-                },
-                "apr": {
-                    "temperature": convert_temp_to_float(row['Apr'])
-                },
-                "may": {
-                    "temperature": convert_temp_to_float(row['May'])
-                },
-                "jun": {
-                    "temperature": convert_temp_to_float(row['Jun'])
-                },
-                "jul": {
-                    "temperature": convert_temp_to_float(row['Jul'])
-                },
-                "aug": {
-                    "temperature": convert_temp_to_float(row['Aug'])
-                },
-                "sep": {
-                    "temperature": convert_temp_to_float(row['Sep'])
-                },
-                "oct": {
-                    "temperature": convert_temp_to_float(row['Oct'])
-                },
-                "nov": {
-                    "temperature": convert_temp_to_float(row['Nov'])
-                },
-                "dec": {
-                    "temperature": convert_temp_to_float(row['Dec'])
+            months = {}
+            for month in ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct",
+                          "nov", "dec"]:
+                month_data = {
+                    "temperature": convert_temp_to_float(row[month])
                 }
-            }
+                months[month] = month_data
 
             city_data = {
                 "city": current_city,

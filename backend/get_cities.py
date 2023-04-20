@@ -5,6 +5,8 @@ Functions:
     get_cities(min_temp, max_temp, month) -> list[str]
 '''
 
+from collections import defaultdict
+
 
 def get_cities(min_temp, max_temp, month, dbname):
     '''
@@ -13,12 +15,13 @@ def get_cities(min_temp, max_temp, month, dbname):
         Preconditions:
             min_temp: str with value <= max_temp
             max_temp: str with value >= max_temp
-            month: str with value that is a valid month of the year
+            month: str with value that is a valid month of the year, starting with a capital letter
 
         Parameters:
             min_temp (str): A string representing the minimum temperature
             max_temp (str): A string representing the maximum temperature
-            month (str): A string representing the month
+            month (str): A string representing the month (e.g., 'January', 'February', etc.)
+            dbname (Database): The name of the database to be used
 
         Returns:
             cities (dict[list[dict[str: str, str: float]]]): All cities where the min_temp is less 
@@ -43,12 +46,16 @@ def get_cities(min_temp, max_temp, month, dbname):
         'December',
     ]
 
-    assert month in valid_months
+    if month not in valid_months:
+        raise ValueError(
+            f"Invalid month: {month}. Please provide a valid month.")
 
     float_min_temp = float(min_temp)
     float_max_temp = float(max_temp)
 
-    assert float_min_temp <= float_max_temp
+    if float_min_temp > float_max_temp:
+        raise ValueError(
+            "Minimum temperature cannot be greater than maximum temperature.")
 
     shortened_month = month[:3].lower()
 
@@ -66,16 +73,14 @@ def get_cities(min_temp, max_temp, month, dbname):
         f"months.{shortened_month}.temperature": 1
     }))
 
-    cities_grouped = {}
+    cities_by_country = defaultdict(list)
 
-    for city_dict in cities:
-        country = city_dict['country']
-        city_to_insert = {
-            'city': city_dict['city'], 'temperature': city_dict['months'][shortened_month]['temperature']
+    for city in cities:
+        country = city['country']
+        city_data = {
+            'city': city['city'],
+            'temperature': city['months'][shortened_month]['temperature']
         }
-        if country in cities_grouped:
-            cities_grouped[country].append(city_to_insert)
-        else:
-            cities_grouped[country] = [city_to_insert]
+        cities_by_country[country].append(city_data)
 
-    return cities_grouped
+    return dict(cities_by_country)
