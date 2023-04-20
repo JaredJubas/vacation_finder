@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import './CitiesList.css';
 
 const CitiesList = ({ cities, isOpen }) => {
-  const [sortOrder, setSortOrder] = useState({ header: null, order: 'asc' });
+  const [sortOrder, setSortOrder] = useState({ header: 'city', order: 'asc' });
 
   const toggleSortOrder = (header) => {
     setSortOrder((prevSortOrder) => {

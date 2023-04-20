@@ -9,12 +9,12 @@ CORS(api)
 
 @api.route('/cities')
 def my_profile():
-    minTemp = request.args.get('minTemp')
-    maxTemp = request.args.get('maxTemp')
+    min_temp = request.args.get('minTemp')
+    max_temp = request.args.get('maxTemp')
     month = request.args.get('month')
 
     dbname = get_database()
 
-    response = get_cities(minTemp, maxTemp, month, dbname)
+    response = get_cities(min_temp, max_temp, month, dbname)
 
     return response
