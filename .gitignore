@@ -26,4 +26,8 @@ yarn-error.log*
 backend/env
 backend/__pycache__
 
+# python virtual environment
 venv
+
+# Travel advisories that were written to a csv file
+safety_data.csv
