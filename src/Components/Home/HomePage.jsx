@@ -3,15 +3,14 @@ import Navbar from '../Navbar/Navbar';
 
 const HomePage = () => {
   return (
-    <div className="home-page-container">
+    <div className="home-page">
       <Navbar />
-      <div className="home-container">
-        <header className="home-header">
-          <div className="header-container">
+      <div className="home">
+        <header className="home__header">
+          <div className="header">
             <h1 className="title">Vacation Finder</h1>
-            <p className="subtitle">Vacation finder tool</p>
-            <div className="vacation-finder-button-container">
-              <a className="vacation-finder-button" href="/vacationFinder">
+            <div className="vacation-finder">
+              <a className="vacation-finder__button" href="/vacationFinder">
                 Get started!
               </a>
             </div>
