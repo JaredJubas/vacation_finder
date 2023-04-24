@@ -61,6 +61,12 @@ def get_cities(min_temp, max_temp, month, dbname):
 
     cities_collection = dbname["cities"]
 
+    # The values for safety in the database has the following meaning:
+    # 'Take normal security precautions': 1,
+    # 'Exercise a high degree of caution': 2,
+    # 'Avoid non-essential travel': 3,
+    # 'Avoid all travel': 4
+    # We want safe countries so safety value should be 1 or 2
     cities = list(cities_collection.find({
         f"months.{shortened_month}.temperature": {
             "$lte": float_max_temp,
