@@ -65,7 +65,8 @@ def get_cities(min_temp, max_temp, month, dbname):
         f"months.{shortened_month}.temperature": {
             "$lte": float_max_temp,
             "$gte": float_min_temp
-        }
+        },
+        "safety": {"$in": [1, 2]}
     }, {
         '_id': 0,
         'city': 1,

@@ -26,7 +26,8 @@ toronto = {
         "oct": {"temperature": 9.8},
         "nov": {"temperature": 7.6},
         "dec": {"temperature": 2.1}
-    }
+    },
+    "safety": 1
 }
 
 ottawa = {
@@ -45,7 +46,8 @@ ottawa = {
             "oct": {"temperature": 9.8},
             "nov": {"temperature": 7.6},
             "dec": {"temperature": 2.1}
-    }
+    },
+    "safety": 1
 }
 
 mexico_city = {
@@ -64,10 +66,31 @@ mexico_city = {
         "oct": {"temperature": 29.8},
         "nov": {"temperature": 27.6},
         "dec": {"temperature": 22.9}
-    }
+    },
+    "safety": 2
 }
 
-database["cities"].insert_many([toronto, ottawa, mexico_city])
+kabul = {
+    "city": "Kabul",
+    "country": "Afghanistan",
+    "months": {
+        "jan": {"temperature": 27.2},
+        "feb": {"temperature": 22.9},
+        "mar": {"temperature": 21.8},
+        "apr": {"temperature": 24.7},
+        "may": {"temperature": 22.1},
+        "jun": {"temperature": 29.5},
+        "jul": {"temperature": 22.6},
+        "aug": {"temperature": 25},
+        "sep": {"temperature": 25.4},
+        "oct": {"temperature": 29.8},
+        "nov": {"temperature": 27.6},
+        "dec": {"temperature": 22.9}
+    },
+    "safety": 4
+}
+
+database["cities"].insert_many([toronto, ottawa, mexico_city, kabul])
 
 
 def test_invalid_temperature_range():
