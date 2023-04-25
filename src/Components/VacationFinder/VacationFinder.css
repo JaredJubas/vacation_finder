@@ -93,14 +93,18 @@ input[type=text] {
 
 /* Element: Submit button */
 .vacation-page__submit-button {
-  width: 80px;
+  width: 100px;
   height: 2.7rem;
-  background: var(--black);
+  background: #2e97b5;
   border-radius: 12px;
   color: var(--white);
   text-align: center;
   border: none;
   cursor: pointer;
+}
+
+.vacation-page__submit-button:hover {
+  background: #2886a0;
 }
 
 select {
