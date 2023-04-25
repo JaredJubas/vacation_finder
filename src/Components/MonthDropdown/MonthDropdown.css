@@ -1,46 +1,60 @@
-.month-container {
+/* Define variables */
+:root {
+  --border-color: #939596;
+  --bg-color: white;
+  --highlight-color: #E3F5FF;
+  --box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+}
+
+/* Block: Month container */
+.month {
   position: relative;
 }
 
+/* Block: Month dropdown */
 .month-dropdown {
-  border: 1px solid #939596;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 150px;
   padding: 0 10px;
   cursor: pointer;
-  border-radius: 12px;
   width: 10rem;
+  height: 2.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
   box-sizing: border-box;
-  block-size: 2.7rem;
 }
 
-.months {
+/*Element: Months */
+.month-dropdown__months {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   max-height: 200px;
   overflow-y: auto;
-  background-color: white;
-  border: 1px solid #939596;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
   border-top: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 12px 12px;
+  box-shadow: var(--box-shadow);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
   z-index: 1;
 }
 
-.months > div {
+/* Element: Month Item */
+.month-dropdown__item {
   padding: 10px;
   cursor: pointer;
 }
 
-.months > div:hover {
-  background-color: #E3F5FF;
+/* Modifier: Month Item - Hover */
+.month-dropdown__item:hover {
+  background-color: var(--highlight-color);
 }
 
-.bottom-flat {
+/* Modifier: Month Dropdown - Bottom Flat */
+.month-dropdown_bottom-flat {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }

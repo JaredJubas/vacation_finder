@@ -25,19 +25,19 @@ const CountriesList = ({ locations }) => {
   }, 0);
 
   return (
-    <div className="results-container">
+    <div className="results">
       {totalCities > 0 ? (
-        <div className="results-header">
+        <div className="results__header">
           Found the following {totalCities} cities in {countries.length}{' '}
           countries. <br />
           Click each dropdown to view the cities in that country!
         </div>
       ) : (
-        <div className="results-header">
+        <div className="results__header">
           No cities found. Try changing the inputs and making another search!
         </div>
       )}
-      <div className="countries-container">
+      <div className="countries">
         {countries.map(([country, cities]) => {
           const numCities = cities.length;
           const numCitiesText = numCities === 1 ? 'City' : 'Cities';
@@ -49,7 +49,7 @@ const CountriesList = ({ locations }) => {
           const caretClass = isOpen ? 'caret-up' : 'caret-down';
 
           return (
-            <div className="country-dropdown-container" key={country}>
+            <div className="countries__dropdown" key={country}>
               <div
                 className={dropdownClasses}
                 onClick={() => toggleDropdown(country)}

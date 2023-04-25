@@ -1,69 +1,75 @@
-.cities-dropdown-container {
+/* Block: Cities dropdown */
+.cities-dropdown {
   background: white;
   border-radius: 0 0 20px 20px;
-  display: flex;
   padding: 0 30px;
   display: none;
 }
 
-.cities-header {
+/* Block: Dropdown header container */
+.cities-dropdown-header {
   border-bottom: 1px solid black;
   padding: 10px 0;
   display: flex;
+  justify-content: space-between;
 }
 
-.city-header, .average-header {
+/* Element: Dropdown headers */
+.cities-dropdown-header__city-header,
+.cities-dropdown-header__average-header {
   cursor: pointer;
   display: flex;
   align-items: center;
 }
 
-.average-header, .temperature {
+/* Element: Dropdown average header */
+.cities-dropdown-header__average-header,
+.city-row__temperature {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
 
+/* Block: City row */
 .city-row {
   display: flex;
   padding: 10px 0;
+  justify-content: space-between;
 }
 
-.cities-visible {
+/* Modifier: Cities dropdown - visible */
+.cities-dropdown--visible {
   display: block;
 }
 
-.arrow-up-down {
+/* Block: Arrows container */
+.arrows {
   display: flex;
   flex-direction: column;
 }
 
-.arrow-up,
-.arrow-down {
+/* Element: Up arrow */
+.arrows__arrow-up {
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.arrow-up {
   border-bottom: 5px solid #2e2e2e;
-  margin-bottom: 1px;
+  margin: 0 0 1px 10px;
 }
 
-.arrow-down {
+/* Element: Down arrow */
+.arrows__arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
   border-top: 5px solid #2e2e2e;
-  margin-top: 1px;
+  margin: 1px 0 0 10px;
 }
 
 @media screen and (max-width:500px) {
-  .countries-container {
-    margin: 0 5vw;
-  }
-
-  .city {
+  .city-row__city {
     max-width: 40%;
   }
 }

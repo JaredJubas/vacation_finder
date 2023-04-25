@@ -3,14 +3,16 @@ import './Navbar.css';
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <ul>
-        <li>
-          <a href="/" className="title">
+      <ul className="navbar__links">
+        <li className="navbar__item">
+          <a href="/" className="navbar__item navbar__title">
             Home
           </a>
         </li>
-        <li>
-          <a href="/vacationFinder">Vacation Finder</a>
+        <li className="navbar__item">
+          <a href="/vacationFinder" className="navbar__item">
+            Vacation Finder
+          </a>
         </li>
       </ul>
     </nav>
