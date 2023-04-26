@@ -1,22 +1,24 @@
-.month-container {
+/* Block: Month container */
+.month {
   position: relative;
 }
 
+/* Block: Month dropdown */
 .month-dropdown {
-  border: 1px solid #939596;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 150px;
   padding: 0 10px;
   cursor: pointer;
-  border-radius: 12px;
   width: 10rem;
+  height: 2.7rem;
+  border: 1px solid #939596;
+  border-radius: 12px;
   box-sizing: border-box;
-  block-size: 2.7rem;
 }
 
-.months {
+/*Element: Months */
+.month-dropdown__months {
   position: absolute;
   top: 100%;
   left: 0;
@@ -31,16 +33,19 @@
   z-index: 1;
 }
 
-.months > div {
+/* Element: Month Item */
+.month-dropdown__item {
   padding: 10px;
   cursor: pointer;
 }
 
-.months > div:hover {
+/* Modifier: Month Item - Hover */
+.month-dropdown__item:hover {
   background-color: #E3F5FF;
 }
 
-.bottom-flat {
+/* Modifier: Month Dropdown - Bottom Flat */
+.month-dropdown_bottom-flat {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }

@@ -1,12 +1,14 @@
-.error-container {
+/* Block: Error container */
+.error {
   border-radius: 10px;
   background: rgba(205, 5, 5, 0.829);
-  max-width: 50%;
   margin-bottom: 20px;
   padding-left: 30px;
+  width: 50vw;
 }
 
-.error-message {
+/* Element: Error message */
+.error__message {
   color: white;
   font-weight: bold;
 }

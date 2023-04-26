@@ -6,8 +6,8 @@ const ErrorMessage = ({ errorMessage }) => {
   }
 
   return (
-    <div className="error-container">
-      <p className="error-message">{errorMessage}</p>
+    <div className="error">
+      <p className="error__message">{errorMessage}</p>
     </div>
   );
 };

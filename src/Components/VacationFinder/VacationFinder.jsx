@@ -61,48 +61,48 @@ const VacationFinder = () => {
   }
 
   return (
-    <div className="vacation-page-container">
+    <div className="vacation-page">
       <Navbar />
 
-      <div className="vacation-finder-container">
-        <div className="search-bar-container">
+      <div className="vacation-page__finder">
+        <div className="vacation-page__search-bar">
           {firstTime && (
-            <p className="initial-message">
+            <p className="vacation-page__message">
               Search for vacation destinations that works for you!
             </p>
           )}
           <ErrorMessage errorMessage={errorMessage} />
-          <div className="search-container">
-            <div className="search-components">
-              <div className="min-temp-container">
-                <label className="min-temp" htmlFor="minTemp">
+          <div className="vacation-page__search">
+            <div className="vacation-page__search-components">
+              <div className="vacation-page__min-temp">
+                <label className="vacation-page__temp-label" htmlFor="minTemp">
                   Minimum Temperature
                 </label>
                 <input
                   type="text"
-                  className="min-temp-input"
+                  className="vacation-page__temp-input"
                   name="minTemp"
                   value={minTemp}
                   onChange={handleMinTemp}
                 ></input>
               </div>
-              <div className="max-temp-container">
-                <label className="max-temp" htmlFor="maxTemp">
+              <div className="vacation-page__max-temp">
+                <label className="vacation-page__temp-label" htmlFor="maxTemp">
                   Maximum Temperature
                 </label>
                 <input
                   type="text"
-                  className="max-temp-input"
+                  className="vacation-page__temp-input"
                   name="maxTemp"
                   value={maxTemp}
                   onChange={handleMaxTemp}
                 ></input>
               </div>
               <MonthDropdown onSelectMonth={handleSelectMonth} />
-              <div className="submit-container">
+              <div className="vacation-page__submit">
                 <button
                   onClick={() => getData(minTemp, maxTemp)}
-                  className="submit-button"
+                  className="vacation-page__submit-button"
                 >
                   Search
                 </button>

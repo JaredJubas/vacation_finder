@@ -36,8 +36,8 @@ const CitiesList = ({ cities, isOpen }) => {
   }, [cities, sortOrder]);
 
   const citiesDropdownClasses = isOpen
-    ? 'cities-dropdown-container cities-visible'
-    : 'cities-dropdown-container';
+    ? 'cities-dropdown cities-dropdown--visible'
+    : 'cities-dropdown';
 
   // Tooltip text so the user can see what will happen if you click a header
   const getTooltipText = (header) => {
@@ -56,56 +56,56 @@ const CitiesList = ({ cities, isOpen }) => {
 
   return (
     <div className={citiesDropdownClasses}>
-      <div className="cities-header">
+      <div className="cities-dropdown-header">
         <div
-          className="city-header"
+          className="cities-dropdown-header__city-header"
           title={cityTooltip}
           onClick={() => toggleSortOrder('city')}
         >
           <span>City</span>
           {sortOrder.header === 'city' && sortOrder.order === 'asc' && (
-            <span className="arrow-up"></span>
+            <span className="arrows__arrow-up"></span>
           )}
           {sortOrder.header !== 'city' && (
             <>
-              <span className="arrow-up-down">
-                <span className="arrow-up"></span>
-                <span className="arrow-down"></span>
+              <span className="arrows">
+                <span className="arrows__arrow-up"></span>
+                <span className="arrows__arrow-down"></span>
               </span>
             </>
           )}
           {sortOrder.header === 'city' && sortOrder.order !== 'asc' && (
-            <span className="arrow-down"></span>
+            <span className="arrows__arrow-down"></span>
           )}
         </div>
         <div
-          className="average-header"
+          className="cities-dropdown-header__average-header"
           title={temperatureTooltip}
           onClick={() => toggleSortOrder('temperature')}
         >
           <span>Average (°C)</span>
           {sortOrder.header === 'temperature' && sortOrder.order === 'asc' && (
-            <span className="arrow-up"></span>
+            <span className="arrows__arrow-up"></span>
           )}
           {sortOrder.header !== 'temperature' && (
             <>
-              <span className="arrow-up-down">
-                <span className="arrow-up"></span>
-                <span className="arrow-down"></span>
+              <span className="arrows">
+                <span className="arrows__arrow-up"></span>
+                <span className="arrows__arrow-down"></span>
               </span>
             </>
           )}
           {sortOrder.header === 'temperature' && sortOrder.order !== 'asc' && (
-            <span className="arrow-down"></span>
+            <span className="arrows__arrow-down"></span>
           )}
         </div>
       </div>
       {sortedCities.map(({ city, temperature }) => {
         return (
-          <div className="cities-container" key={city}>
+          <div className="cities" key={city}>
             <div className="city-row">
-              <div className="city">{city}</div>
-              <div className="temperature">{temperature}</div>
+              <div className="city-row__city">{city}</div>
+              <div className="city-row__temperature">{temperature}</div>
             </div>
           </div>
         );

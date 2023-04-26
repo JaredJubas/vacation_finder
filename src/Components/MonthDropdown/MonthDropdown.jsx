@@ -4,7 +4,7 @@ import './MonthDropdown.css';
 
 const Month = ({ month, onClick }) => {
   return (
-    <div key={month} onClick={onClick} className="month">
+    <div key={month} onClick={onClick} className="month-dropdown__item">
       {month}
     </div>
   );
@@ -35,7 +35,7 @@ const MonthDropdown = ({ onSelectMonth }) => {
   );
 
   const handleOutsideClick = useCallback((event) => {
-    if (!event.target.matches('.month-dropdown')) {
+    if (!event.target.matches('month-dropdown')) {
       setIsOpen(false);
     }
   }, []);
@@ -49,17 +49,17 @@ const MonthDropdown = ({ onSelectMonth }) => {
 
   const dropdownClassNames = ['month-dropdown'];
   if (isOpen) {
-    dropdownClassNames.push('bottom-flat');
+    dropdownClassNames.push('month-dropdown_bottom-flat');
   }
 
   return (
-    <div onClick={handleToggle} className="month-container">
+    <div onClick={handleToggle} className="month">
       <div className={dropdownClassNames.join(' ')}>
         {selectedMonth ? selectedMonth : 'Month'}
         <div className={`caret-down${isOpen ? ' caret-up' : ''}`}></div>
       </div>
       {isOpen && (
-        <div className="months" required>
+        <div className="month-dropdown__months" required>
           {MONTHS.map((month) => (
             <Month key={month} month={month} onClick={handleSelect} />
           ))}

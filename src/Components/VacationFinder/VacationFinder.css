@@ -1,41 +1,43 @@
-.vacation-page-container {
+/* Block: Vacation page container */
+.vacation-page {
   display: flex;
   flex-flow: column;
   height: 100%;
 }
 
-.vacation-finder-container {
+/* Block: Vacation finder container */
+.vacation-page__finder {
   background: #F0F0F0;
   flex: 1 1 auto;
 }
 
-.initial-message {
+/* Element: Initial message */
+.vacation-page__message {
   font-weight: 500;
   font-size: 22px;
   text-align: center;
   padding: 50px;
 }
 
-.error-container {
-  width: 80vw;
-}
-
-.search-bar-container {
+/* Block: Search bar container */
+.vacation-page__search-bar {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 15px;
 }
 
-.search-container {
+/* Block: Search container */
+.vacation-page__search {
   padding: 24px;
   gap: 20px;
   border-radius: 20px;
-  background: white;
+  background:white;
   max-width: 700px;
 }
 
-.search-components {
+/* Block: Search components */
+.vacation-page__search-components {
   display: flex;
   flex-direction: row;
   padding: 0px;
@@ -43,13 +45,17 @@
   flex-wrap: wrap;
 }
 
-.min-temp-container, .max-temp-container, .submit-container {
+/* Element: Min temp container, Max temp container, Submit container */
+.vacation-page__min-temp,
+.vacation-page__max-temp,
+.vacation-page__submit {
   position: relative;
   display: flex;
   block-size: 2.7rem;
 }
 
-.min-temp, .max-temp {
+/* Element: Min temp, Max temp */
+.vacation-page__temp-label {
   font-family: 'Inter';
   position: absolute;
   padding-left: 10px;
@@ -57,7 +63,8 @@
   font-size: 14px;
 }
 
-.min-temp-input, .max-temp-input {
+/* Element: Min temp input, Max temp input */
+.vacation-page__temp-input {
   border: 1px solid #939596;
   border-radius: 12px;
   display: flex;
@@ -67,21 +74,27 @@
   box-sizing: border-box;
 }
 
+/* Element: Text input */
 input[type=text] {
   padding-left: 25px;
   padding-top: 20px;
   display: flex;
 }
 
-.submit-button {
-  width: 80px;
+/* Element: Submit button */
+.vacation-page__submit-button {
+  width: 100px;
   height: 2.7rem;
-  background: black;
+  background: #2e97b5;
   border-radius: 12px;
   color: white;
   text-align: center;
   border: none;
   cursor: pointer;
+}
+
+.vacation-page__submit-button:hover {
+  background: #2886a0;
 }
 
 select {
@@ -91,9 +104,4 @@ select {
 
 select:focus {
   outline: 2px solid black;
-}
-
-.caret-flip {
-  transform: rotate(180deg);
-  transform-origin: 75% 50%;
 }
