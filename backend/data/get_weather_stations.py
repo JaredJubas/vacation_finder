@@ -22,7 +22,7 @@ Functions:
 
     Example usage:
         # Call from command line:
-        # python get_stations.py
+        # python get_weather_stations.py
 
 Notes:
     This module requires the following libraries to be installed: requests, csv, os, logging, time,
