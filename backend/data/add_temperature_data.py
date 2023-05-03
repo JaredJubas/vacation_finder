@@ -86,11 +86,11 @@ def build_city_dict(row: pd.Series) -> Dict[str, Any]:
                 country: str
                 months: {
                     "jan": {
-                    "temperature": float
+                        "temperature": float
                 },
-                <insert other months here>,
-                "dec": {
-                    "temperature": float
+                    <insert other months here>,
+                    "dec": {
+                        "temperature": float
                 }
             }
     '''
