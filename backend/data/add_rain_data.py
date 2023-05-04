@@ -176,12 +176,15 @@ def count_rainy_days(max_date: datetime, min_date: datetime, station_id: str) ->
                     precipitation)
 
     for month in MONTH_NAMES:
-        rainy_days_per_month[month] /= min(20, max_date.year - min_date.year - 1)
-        rainy_days_per_month[month] = round(rainy_days_per_month[month], 2)
+        try:
+            rainy_days_per_month[month] /= min(20, max_date.year - min_date.year - 1)
+            rainy_days_per_month[month] = round(rainy_days_per_month[month], 2)
 
-        total_precipitation_per_month[month] /= min(
-            20, max_date.year - min_date.year - 1)
-        total_precipitation_per_month[month] = round(total_precipitation_per_month[month], 2)
+            total_precipitation_per_month[month] /= min(
+                20, max_date.year - min_date.year - 1)
+            total_precipitation_per_month[month] = round(total_precipitation_per_month[month], 2)
+        except ZeroDivisionError:
+            print("Division by zero. No data could be found.")
 
     return rainy_days_per_month, total_precipitation_per_month
 
