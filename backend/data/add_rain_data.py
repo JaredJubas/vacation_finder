@@ -10,7 +10,7 @@ Functions:
     get_rain_data(params: dict) -> list
         Retrieves rainfall data from the NOAA API, given a dictionary of parameters. If the request
         fails, it will retry up to 3 times before raising an error.
-        API documentation: https://www.ncdc.noaa.gov/cdo-web/webservices/v2
+        API documentation: https://www.ncdc.noaa.gov/cdo-web/webservices/v2#data
 
     count_rainy_days(max_date: datetime, min_date: datetime, station_id: str) -> tuple
         Counts the number of rainy days and total precipitation for each month, given a weather
@@ -27,6 +27,11 @@ Functions:
     
     add_rain_to_db() -> None
         Main function that updates the average monthly rainfall values in the database.
+
+Example usage:
+    # Should be called through update-data script
+    # Call from command line to update rain data:
+    # yarn update-data --rain
 """
 
 
@@ -221,10 +226,10 @@ def update_db_with_rain(station_data: dict, days_rainy: dict, total_rain: dict) 
             {'$set': {f"months.{month}.rain": days_rainy[month]}}
         )
 
-    # Currently only average number of rainy days is written to the database, but store average 
-    # total rainfall per month in a csv file just in case it is needed later, that way we won't have 
+    # Currently only average number of rainy days is written to the database, but store average
+    # total rainfall per month in a csv file just in case it is needed later, that way we won't have
     # to make all the API calls again
-    with open('rain.csv', mode='a', newline='', encoding='UTF-8') as csv_file:
+    with open('rain/csv/rain_improved.csv', mode='a', newline='', encoding='UTF-8') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow([city, country, name, station_id,
                         days_rainy, total_rain])
@@ -241,7 +246,8 @@ def add_rain_to_db() -> None:
             None
     """
 
-    all_stations = read_stations("stations.csv")
+    all_stations = read_stations("rain/csv/stations_improved.csv")
+
     for station in all_stations:
         print('Getting info for the following station:', station)
         rainy_days, total_precipitation = count_rainy_days(station["maxdate"], station["mindate"],
