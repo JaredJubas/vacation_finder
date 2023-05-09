@@ -75,24 +75,30 @@ const VacationFinder = () => {
           <div className="vacation-page__search">
             <div className="vacation-page__search-components">
               <div className="vacation-page__min-temp">
-                <label className="vacation-page__temp-label" htmlFor="minTemp">
+                <label
+                  className="vacation-page__temp-label"
+                  htmlFor="vacation-page__min-temp-input"
+                >
                   Minimum Temperature
                 </label>
                 <input
                   type="text"
-                  className="vacation-page__temp-input"
+                  id="vacation-page__min-temp-input"
                   name="minTemp"
                   value={minTemp}
                   onChange={handleMinTemp}
                 ></input>
               </div>
               <div className="vacation-page__max-temp">
-                <label className="vacation-page__temp-label" htmlFor="maxTemp">
+                <label
+                  className="vacation-page__temp-label"
+                  htmlFor="vacation-page__max-temp-input"
+                >
                   Maximum Temperature
                 </label>
                 <input
                   type="text"
-                  className="vacation-page__temp-input"
+                  id="vacation-page__max-temp-input"
                   name="maxTemp"
                   value={maxTemp}
                   onChange={handleMaxTemp}
