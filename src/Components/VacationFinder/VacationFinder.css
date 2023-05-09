@@ -64,18 +64,13 @@
 }
 
 /* Element: Min temp input, Max temp input */
-.vacation-page__temp-input {
+#vacation-page__min-temp-input,
+#vacation-page__max-temp-input {
   border: 1px solid #939596;
   border-radius: 12px;
-  display: flex;
   block-size: inherit;
   width: 10rem;
-  padding: 0;
   box-sizing: border-box;
-}
-
-/* Element: Text input */
-input[type=text] {
   padding-left: 25px;
   padding-top: 20px;
   display: flex;
