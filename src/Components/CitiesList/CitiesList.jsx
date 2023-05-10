@@ -19,13 +19,15 @@ const CitiesList = ({ cities, isOpen }) => {
   };
 
   const sortedCities = useMemo(() => {
-    // Sort cities by header or temperature, depending on user selection
+    // Sort cities by header, temperature, or rain depending on user selection
     // Default is to sort city names in ascending order
     const sorted = [...cities].sort((a, b) => {
       if (sortOrder.header === 'temperature') {
         return sortOrder.order === 'desc'
           ? b.temperature - a.temperature
           : a.temperature - b.temperature;
+      } else if (sortOrder.header === 'rain') {
+        return sortOrder.order === 'desc' ? b.rain - a.rain : a.rain - b.rain;
       } else {
         return sortOrder.order === 'desc'
           ? b.city.localeCompare(a.city)
@@ -53,6 +55,7 @@ const CitiesList = ({ cities, isOpen }) => {
 
   const cityTooltip = getTooltipText('city');
   const temperatureTooltip = getTooltipText('temperature');
+  const rainTooltip = getTooltipText('rain');
 
   return (
     <div className={citiesDropdownClasses}>
@@ -99,13 +102,35 @@ const CitiesList = ({ cities, isOpen }) => {
             <span className="arrows__arrow-down"></span>
           )}
         </div>
+        <div
+          className="cities-dropdown-header__rain-header"
+          title={rainTooltip}
+          onClick={() => toggleSortOrder('rain')}
+        >
+          <span>Precipitation (days)</span>
+          {sortOrder.header === 'rain' && sortOrder.order === 'asc' && (
+            <span className="arrows__arrow-up"></span>
+          )}
+          {sortOrder.header !== 'rain' && (
+            <>
+              <span className="arrows">
+                <span className="arrows__arrow-up"></span>
+                <span className="arrows__arrow-down"></span>
+              </span>
+            </>
+          )}
+          {sortOrder.header === 'rain' && sortOrder.order !== 'asc' && (
+            <span className="arrows__arrow-down"></span>
+          )}
+        </div>
       </div>
-      {sortedCities.map(({ city, temperature }) => {
+      {sortedCities.map(({ city, temperature, rain }) => {
         return (
           <div className="cities" key={city}>
             <div className="city-row">
               <div className="city-row__city">{city}</div>
               <div className="city-row__temperature">{temperature}</div>
+              <div className="city-row__rain">{rain}</div>
             </div>
           </div>
         );

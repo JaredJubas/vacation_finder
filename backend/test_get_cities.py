@@ -14,18 +14,18 @@ toronto = {
     "city": "Toronto",
     "country": "Canada",
     "months": {
-        "jan": {"temperature": -5.2},
-        "feb": {"temperature": -2.9},
-        "mar": {"temperature": 1.8},
-        "apr": {"temperature": 4.7},
-        "may": {"temperature": 10},
-        "jun": {"temperature": 19.5},
-        "jul": {"temperature": 22.6},
-        "aug": {"temperature": 20.1},
-        "sep": {"temperature": 15.4},
-        "oct": {"temperature": 9.8},
-        "nov": {"temperature": 7.6},
-        "dec": {"temperature": 2.1}
+        "jan": {"temperature": -5.2, "rain": 4.2},
+        "feb": {"temperature": -2.9, "rain": 5.1},
+        "mar": {"temperature": 1.8, "rain": 4.6},
+        "apr": {"temperature": 4.7, "rain": 7.6},
+        "may": {"temperature": 10, "rain": 6.6},
+        "jun": {"temperature": 19.5, "rain": 4},
+        "jul": {"temperature": 22.6, "rain": 3.1},
+        "aug": {"temperature": 20.1, "rain": 2.3},
+        "sep": {"temperature": 15.4, "rain": 5.6},
+        "oct": {"temperature": 9.8, "rain": 0.8},
+        "nov": {"temperature": 7.6, "rain": 1},
+        "dec": {"temperature": 2.1, "rain": 22}
     },
     "safety": 1
 }
@@ -34,18 +34,18 @@ ottawa = {
     "city": "Ottawa",
     "country": "Canada",
     "months": {
-        "jan": {"temperature": -7.2},
-            "feb": {"temperature": -2.9},
-            "mar": {"temperature": 1.8},
-            "apr": {"temperature": 4.7},
-            "may": {"temperature": 12.1},
-            "jun": {"temperature": 19.5},
-            "jul": {"temperature": 22.6},
-            "aug": {"temperature": 23},
-            "sep": {"temperature": 15.4},
-            "oct": {"temperature": 9.8},
-            "nov": {"temperature": 7.6},
-            "dec": {"temperature": 2.1}
+        "jan": {"temperature": -7.2, "rain": 5.6},
+            "feb": {"temperature": -2.9, "rain": 3.4},
+            "mar": {"temperature": 1.8, "rain": 1},
+            "apr": {"temperature": 4.7, "rain": 2.3},
+            "may": {"temperature": 12.1, "rain": 2.6},
+            "jun": {"temperature": 19.5, "rain": 3.4},
+            "jul": {"temperature": 22.6, "rain": 4.54},
+            "aug": {"temperature": 23, "rain": 6.56},
+            "sep": {"temperature": 15.4, "rain": 8.97},
+            "oct": {"temperature": 9.8, "rain": 5.56},
+            "nov": {"temperature": 7.6, "rain": 19},
+            "dec": {"temperature": 2.1, "rain": 2.3}
     },
     "safety": 1
 }
@@ -54,18 +54,18 @@ mexico_city = {
     "city": "Mexico City",
     "country": "Mexico",
     "months": {
-        "jan": {"temperature": 27.2},
-        "feb": {"temperature": 22.9},
-        "mar": {"temperature": 21.8},
-        "apr": {"temperature": 24.7},
-        "may": {"temperature": 22.1},
-        "jun": {"temperature": 29.5},
-        "jul": {"temperature": 22.6},
-        "aug": {"temperature": 25},
-        "sep": {"temperature": 25.4},
-        "oct": {"temperature": 29.8},
-        "nov": {"temperature": 27.6},
-        "dec": {"temperature": 22.9}
+        "jan": {"temperature": 27.2, "rain": 0.01},
+        "feb": {"temperature": 22.9, "rain": 0.4},
+        "mar": {"temperature": 21.8, "rain": 0.6},
+        "apr": {"temperature": 24.7, "rain": 0.7},
+        "may": {"temperature": 22.1, "rain": 0.8},
+        "jun": {"temperature": 29.5, "rain": 1.3},
+        "jul": {"temperature": 22.6, "rain": 1.2},
+        "aug": {"temperature": 25, "rain": 1.6},
+        "sep": {"temperature": 25.4, "rain": 11.4},
+        "oct": {"temperature": 29.8, "rain": 3.4},
+        "nov": {"temperature": 27.6, "rain": 15.4},
+        "dec": {"temperature": 22.9, "rain": 4.5}
     },
     "safety": 2
 }
@@ -74,18 +74,18 @@ kabul = {
     "city": "Kabul",
     "country": "Afghanistan",
     "months": {
-        "jan": {"temperature": 27.2},
-        "feb": {"temperature": 22.9},
-        "mar": {"temperature": 21.8},
-        "apr": {"temperature": 24.7},
-        "may": {"temperature": 22.1},
-        "jun": {"temperature": 29.5},
-        "jul": {"temperature": 22.6},
-        "aug": {"temperature": 25},
-        "sep": {"temperature": 25.4},
-        "oct": {"temperature": 29.8},
-        "nov": {"temperature": 27.6},
-        "dec": {"temperature": 22.9}
+        "jan": {"temperature": 27.2, "rain": 1.1},
+        "feb": {"temperature": 22.9, "rain": 1.1},
+        "mar": {"temperature": 21.8, "rain": 1.2},
+        "apr": {"temperature": 24.7, "rain": 1.6},
+        "may": {"temperature": 22.1, "rain": 0.7},
+        "jun": {"temperature": 29.5, "rain": 0.5},
+        "jul": {"temperature": 22.6, "rain": 0.4},
+        "aug": {"temperature": 25, "rain": 1},
+        "sep": {"temperature": 25.4, "rain": 0.2},
+        "oct": {"temperature": 29.8, "rain": 0.3},
+        "nov": {"temperature": 27.6, "rain": 0.5},
+        "dec": {"temperature": 22.9, "rain": 10.65}
     },
     "safety": 4
 }
@@ -160,7 +160,7 @@ def test_one_city_valid():
 
     cities = get_cities(min_temp, max_temp, month, database)
 
-    assert cities == {'Canada': [{'city': 'Toronto', 'temperature': 10}]}
+    assert cities == {'Canada': [{'city': 'Toronto', 'temperature': 10, 'rain': 6.6}]}
 
 
 def test_multiple_cities_valid():
@@ -176,8 +176,10 @@ def test_multiple_cities_valid():
 
     cities = get_cities(min_temp, max_temp, month, database)
 
-    assert cities == {'Canada': [{'city': 'Toronto', 'temperature': 20.1}, {
-        'city': 'Ottawa', 'temperature': 23}]}
+    assert cities == {
+        'Canada': [{'city': 'Toronto', 'temperature': 20.1, 'rain': 2.3}, 
+                   {'city': 'Ottawa', 'temperature': 23, 'rain': 6.56}]
+        }
 
 
 def test_multiple_countries_valid():
@@ -194,5 +196,7 @@ def test_multiple_countries_valid():
     cities = get_cities(min_temp, max_temp, month, database)
 
     assert cities == {
-        'Canada': [{'city': 'Toronto', 'temperature': 20.1}, {'city': 'Ottawa', 'temperature': 23}],
-        'Mexico': [{'city': 'Mexico City', 'temperature': 25}]}
+        'Canada': [{'city': 'Toronto', 'temperature': 20.1, 'rain': 2.3}, 
+                   {'city': 'Ottawa', 'temperature': 23, 'rain': 6.56}],
+        'Mexico': [{'city': 'Mexico City', 'temperature': 25, 'rain': 1.6}]
+        }

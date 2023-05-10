@@ -22,6 +22,12 @@ const VacationFinder = () => {
       return;
     }
 
+    // Check if minTemp and maxTemp are valid numbers
+    if (isNaN(parseFloat(minTemp)) || isNaN(parseFloat(maxTemp))) {
+      setErrorMessage('Please enter valid temperature values.');
+      return;
+    }
+
     setErrorMessage(null);
 
     // If apiUrl is not defined then it's on local

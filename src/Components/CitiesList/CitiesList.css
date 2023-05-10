@@ -16,7 +16,8 @@
 
 /* Element: Dropdown headers */
 .cities-dropdown-header__city-header,
-.cities-dropdown-header__average-header {
+.cities-dropdown-header__average-header,
+.cities-dropdown-header__rain-header {
   cursor: pointer;
   display: flex;
   align-items: center;
