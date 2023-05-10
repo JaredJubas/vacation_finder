@@ -50,8 +50,11 @@ def get_cities(min_temp, max_temp, month, dbname):
         raise ValueError(
             f"Invalid month: {month}. Please provide a valid month.")
 
-    float_min_temp = float(min_temp)
-    float_max_temp = float(max_temp)
+    try:
+        float_min_temp = float(min_temp)
+        float_max_temp = float(max_temp)
+    except ValueError as exc:
+        raise ValueError("Invalid temperature values. Please provide numbers.") from exc
 
     if float_min_temp > float_max_temp:
         raise ValueError(
@@ -77,7 +80,7 @@ def get_cities(min_temp, max_temp, month, dbname):
         '_id': 0,
         'city': 1,
         'country': 1,
-        f"months.{shortened_month}.temperature": 1
+        f"months.{shortened_month}": 1
     }))
 
     cities_by_country = defaultdict(list)
@@ -86,7 +89,8 @@ def get_cities(min_temp, max_temp, month, dbname):
         country = city['country']
         city_data = {
             'city': city['city'],
-            'temperature': city['months'][shortened_month]['temperature']
+            'temperature': city['months'][shortened_month]['temperature'],
+            'rain': city['months'][shortened_month]['rain']
         }
         cities_by_country[country].append(city_data)
 
