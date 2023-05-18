@@ -1,4 +1,5 @@
 import './ErrorMessage.css';
+import { Alert } from '@mui/material';
 
 const ErrorMessage = ({ errorMessage }) => {
   if (!errorMessage) {
@@ -7,7 +8,7 @@ const ErrorMessage = ({ errorMessage }) => {
 
   return (
     <div className="error">
-      <p className="error__message">{errorMessage}</p>
+      <Alert severity="error">{errorMessage}</Alert>
     </div>
   );
 };
