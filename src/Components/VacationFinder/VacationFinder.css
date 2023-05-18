@@ -29,7 +29,7 @@
 
 /* Block: Search container */
 .vacation-page__search {
-  padding: 24px;
+  padding: 20px;
   gap: 20px;
   border-radius: 20px;
   background:white;
@@ -45,58 +45,7 @@
   flex-wrap: wrap;
 }
 
-/* Element: Min temp container, Max temp container, Submit container */
-.vacation-page__min-temp,
-.vacation-page__max-temp,
-.vacation-page__submit {
-  position: relative;
-  display: flex;
-  block-size: 2.7rem;
-}
-
-/* Element: Min temp, Max temp */
-.vacation-page__temp-label {
-  font-family: 'Inter';
-  position: absolute;
-  padding-left: 10px;
-  padding-top: 6px;
-  font-size: 14px;
-}
-
-/* Element: Min temp input, Max temp input */
-#vacation-page__min-temp-input,
-#vacation-page__max-temp-input {
-  border: 1px solid #939596;
-  border-radius: 12px;
-  block-size: inherit;
-  width: 10rem;
-  box-sizing: border-box;
-  padding-left: 25px;
-  padding-top: 20px;
-  display: flex;
-}
-
-/* Element: Submit button */
-.vacation-page__submit-button {
-  width: 100px;
-  height: 2.7rem;
-  background: #2e97b5;
-  border-radius: 12px;
-  color: white;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-}
-
-.vacation-page__submit-button:hover {
-  background: #2886a0;
-}
-
-select {
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-select:focus {
-  outline: 2px solid black;
+.dropdown-open {
+  padding-right: 0 !important;
+  overflow-y: auto !important;
 }

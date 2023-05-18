@@ -1,20 +1,38 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as MUI from '@mui/material';
 import './VacationFinder.css';
 import Navbar from '../Navbar/Navbar';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import CountriesList from '../CountriesList/CountriesList';
-import MonthDropdown from '../MonthDropdown/MonthDropdown';
+import { MONTHS } from '../../utils/months';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const VacationFinder = () => {
-  const [minTemp, setMinTemp] = useState(null);
-  const [maxTemp, setMaxTemp] = useState(null);
-  const [cityData, setCitiesData] = useState(null);
-  const [firstTime, setFirstTime] = useState(true);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [month, setSelectedMonth] = useState(null);
+  const [minTemp, setMinTemp] = useState(null),
+    [maxTemp, setMaxTemp] = useState(null),
+    [cityData, setCitiesData] = useState(null),
+    [firstTime, setFirstTime] = useState(true),
+    [errorMessage, setErrorMessage] = useState(null),
+    [open, setOpen] = useState(false),
+    [month, setSelectedMonth] = useState(null);
+
+  // For some reason, when the month dropdown is selected and cities are loaded, padding is being
+  // added to the right and the srollbar disappears
+  useEffect(() => {
+    // TODO This is a temporary solution. Figure out why padding is being added when the month
+    // dropdown is selected
+    if (open) {
+      document.body.classList.add('dropdown-open');
+    } else {
+      document.body.classList.remove('dropdown-open');
+    }
+
+    return () => {
+      document.body.classList.remove('dropdown-open');
+    };
+  }, [open]);
 
   function getData(minTemp, maxTemp) {
     if (!minTemp || !maxTemp || !month) {
@@ -22,9 +40,14 @@ const VacationFinder = () => {
       return;
     }
 
-    // Check if minTemp and maxTemp are valid numbers
-    if (isNaN(parseFloat(minTemp)) || isNaN(parseFloat(maxTemp))) {
-      setErrorMessage('Please enter valid temperature values.');
+    const floatMinTemp = parseFloat(minTemp);
+    const floatMaxTemp = parseFloat(maxTemp);
+
+    // Check if minTemp > maxTemp
+    if (floatMinTemp > floatMaxTemp) {
+      setErrorMessage(
+        'Minimum temperature cannot be greater than maximum temperature.'
+      );
       return;
     }
 
@@ -54,73 +77,126 @@ const VacationFinder = () => {
       });
   }
 
-  function handleMinTemp(event) {
-    setMinTemp(event.target.value);
-  }
-
-  function handleMaxTemp(event) {
-    setMaxTemp(event.target.value);
-  }
-
-  function handleSelectMonth(selectedMonth) {
-    setSelectedMonth(selectedMonth);
-  }
+  // If dropdown is open then make the bottom flat
+  const dropdownRadius = open ? '16px 16px 0 0' : '16px';
 
   return (
     <div className="vacation-page">
       <Navbar />
-
       <div className="vacation-page__finder">
         <div className="vacation-page__search-bar">
           {firstTime && (
             <p className="vacation-page__message">
-              Search for vacation destinations that works for you!
+              Search for vacation destinations that work for you!
             </p>
           )}
           <ErrorMessage errorMessage={errorMessage} />
-          <div className="vacation-page__search">
-            <div className="vacation-page__search-components">
-              <div className="vacation-page__min-temp">
-                <label
-                  className="vacation-page__temp-label"
-                  htmlFor="vacation-page__min-temp-input"
-                >
-                  Minimum Temperature
-                </label>
-                <input
-                  type="text"
-                  id="vacation-page__min-temp-input"
+          <MUI.Box
+            sx={{
+              padding: '20px',
+              gap: '20px',
+              borderRadius: '20px',
+              background: 'white',
+              maxWidth: '700px',
+            }}
+          >
+            <MUI.Grid
+              container
+              spacing={2}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <MUI.Grid item xs={12} sm={4}>
+                <MUI.TextField
+                  id="minTemp-input"
+                  label="Minimum Temperature"
+                  variant="outlined"
                   name="minTemp"
+                  type="number"
                   value={minTemp}
-                  onChange={handleMinTemp}
-                ></input>
-              </div>
-              <div className="vacation-page__max-temp">
-                <label
-                  className="vacation-page__temp-label"
-                  htmlFor="vacation-page__max-temp-input"
-                >
-                  Maximum Temperature
-                </label>
-                <input
-                  type="text"
-                  id="vacation-page__max-temp-input"
+                  onChange={(event) => setMinTemp(event.target.value)}
+                  sx={{
+                    width: '100%',
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '16px',
+                    },
+                  }}
+                />
+              </MUI.Grid>
+              <MUI.Grid item xs={12} sm={4}>
+                <MUI.TextField
+                  id="maxTemp-input"
+                  label="Maximum Temperature"
+                  variant="outlined"
                   name="maxTemp"
+                  type="number"
                   value={maxTemp}
-                  onChange={handleMaxTemp}
-                ></input>
-              </div>
-              <MonthDropdown onSelectMonth={handleSelectMonth} />
-              <div className="vacation-page__submit">
-                <button
+                  onChange={(event) => setMaxTemp(event.target.value)}
+                  sx={{
+                    width: '100%',
+                    '& .MuiOutlinedInput-root': {
+                      borderRadius: '16px',
+                    },
+                  }}
+                />
+              </MUI.Grid>
+              <MUI.Grid item xs={12} sm={4}>
+                <MUI.FormControl fullWidth sx={{ minWidth: 120 }}>
+                  <MUI.InputLabel id="month-select-label">Month</MUI.InputLabel>
+                  <MUI.Select
+                    label="Month"
+                    value={month}
+                    onChange={(event) => setSelectedMonth(event.target.value)}
+                    onOpen={() => setOpen(true)}
+                    onClose={() => setOpen(false)}
+                    sx={{ borderRadius: dropdownRadius }}
+                    MenuProps={{
+                      getContentAnchorEl: null,
+                      anchorOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                      },
+                      transformOrigin: {
+                        vertical: 'top',
+                        horizontal: 'left',
+                      },
+                      PaperProps: {
+                        style: {
+                          maxHeight: '200px', // Set the maximum height for the dropdown menu
+                          overflowY: 'auto', // Enable vertical scrolling
+                        },
+                      },
+                    }}
+                  >
+                    {MONTHS.map((option) => (
+                      <MUI.MenuItem key={option} value={option}>
+                        {option}
+                      </MUI.MenuItem>
+                    ))}
+                  </MUI.Select>
+                </MUI.FormControl>
+              </MUI.Grid>
+              <MUI.Grid
+                item
+                xs={12}
+                sm={4}
+                sx={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <MUI.Button
+                  variant="contained"
                   onClick={() => getData(minTemp, maxTemp)}
-                  className="vacation-page__submit-button"
+                  sx={{
+                    borderRadius: '12px',
+                    textTransform: 'none',
+                    fontSize: '1rem',
+                    padding: '10px 30px',
+                  }}
                 >
                   Search
-                </button>
-              </div>
-            </div>
-          </div>
+                </MUI.Button>
+              </MUI.Grid>
+            </MUI.Grid>
+          </MUI.Box>
         </div>
         {cityData && <CountriesList locations={cityData}></CountriesList>}
       </div>
