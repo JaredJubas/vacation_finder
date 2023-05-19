@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import './CitiesList.css';
 
-const CitiesList = ({ cities, isOpen }) => {
+export const CitiesList = ({ cities, isOpen }) => {
   const [sortOrder, setSortOrder] = useState({ header: 'city', order: 'asc' });
 
   const toggleSortOrder = (header) => {
@@ -138,5 +138,3 @@ const CitiesList = ({ cities, isOpen }) => {
     </div>
   );
 };
-
-export default CitiesList;

@@ -1,7 +1,8 @@
+import React from 'react';
 import './ErrorMessage.css';
 import { Alert } from '@mui/material';
 
-const ErrorMessage = ({ errorMessage }) => {
+export const ErrorMessage = ({ errorMessage }) => {
   if (!errorMessage) {
     return;
   }
@@ -12,5 +13,3 @@ const ErrorMessage = ({ errorMessage }) => {
     </div>
   );
 };
-
-export default ErrorMessage;

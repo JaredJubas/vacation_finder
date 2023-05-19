@@ -1,7 +1,8 @@
+import React from 'react';
 import './Homepage.css';
-import Navbar from '../Navbar/Navbar';
+import { Navbar } from '../Navbar/Navbar';
 
-const HomePage = () => {
+export const HomePage = () => {
   return (
     <div className="home-page">
       <Navbar />
@@ -20,5 +21,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;
