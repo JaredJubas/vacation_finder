@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as MUI from '@mui/material';
 import './VacationFinder.css';
-import Navbar from '../Navbar/Navbar';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import CountriesList from '../CountriesList/CountriesList';
+import { Navbar } from '../Navbar/Navbar';
+import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import { CountriesList } from '../CountriesList/CountriesList';
 import { MONTHS } from '../../utils/months';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const VacationFinder = () => {
+export const VacationFinder = () => {
   const [minTemp, setMinTemp] = useState(null),
     [maxTemp, setMaxTemp] = useState(null),
     [cityData, setCitiesData] = useState(null),
@@ -203,5 +203,3 @@ const VacationFinder = () => {
     </div>
   );
 };
-
-export default VacationFinder;

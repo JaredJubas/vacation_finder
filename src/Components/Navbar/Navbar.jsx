@@ -1,6 +1,7 @@
+import React from 'react';
 import './Navbar.css';
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <nav className="navbar">
       <ul className="navbar__links">
@@ -18,5 +19,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;

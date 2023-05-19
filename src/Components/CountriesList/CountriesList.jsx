@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './CountriesList.css';
-import CitiesList from '../CitiesList/CitiesList';
+import { CitiesList } from '../CitiesList/CitiesList';
 
-const CountriesList = ({ locations }) => {
+export const CountriesList = ({ locations }) => {
   const [openDropdowns, setOpenDropdowns] = useState([]);
 
   const toggleDropdown = (country) => {
@@ -70,5 +70,3 @@ const CountriesList = ({ locations }) => {
     </div>
   );
 };
-
-export default CountriesList;
