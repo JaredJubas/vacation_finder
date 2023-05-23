@@ -10,13 +10,13 @@ import { MONTHS } from '../../utils/months';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const VacationFinder = () => {
-  const [minTemp, setMinTemp] = useState(null),
-    [maxTemp, setMaxTemp] = useState(null),
+  const [minTemp, setMinTemp] = useState(''),
+    [maxTemp, setMaxTemp] = useState(''),
     [cityData, setCitiesData] = useState(null),
     [firstTime, setFirstTime] = useState(true),
-    [errorMessage, setErrorMessage] = useState(null),
+    [errorMessage, setErrorMessage] = useState(''),
     [open, setOpen] = useState(false),
-    [month, setSelectedMonth] = useState(null);
+    [month, setSelectedMonth] = useState('');
 
   // For some reason, when the month dropdown is selected and cities are loaded, padding is being
   // added to the right and the srollbar disappears
@@ -151,7 +151,6 @@ export const VacationFinder = () => {
                     onClose={() => setOpen(false)}
                     sx={{ borderRadius: dropdownRadius }}
                     MenuProps={{
-                      getContentAnchorEl: null,
                       anchorOrigin: {
                         vertical: 'bottom',
                         horizontal: 'left',
