@@ -16,10 +16,11 @@ export const VacationFinder = () => {
     [firstTime, setFirstTime] = useState(true),
     [errorMessage, setErrorMessage] = useState(''),
     [open, setOpen] = useState(false),
-    [month, setSelectedMonth] = useState('');
+    [month, setSelectedMonth] = useState(''),
+    [rainyDays, setRainyDays] = useState(0);
 
   // For some reason, when the month dropdown is selected and cities are loaded, padding is being
-  // added to the right and the srollbar disappears
+  // added to the right and the scrollbar disappears
   useEffect(() => {
     // TODO This is a temporary solution. Figure out why padding is being added when the month
     // dropdown is selected
@@ -33,6 +34,23 @@ export const VacationFinder = () => {
       document.body.classList.remove('dropdown-open');
     };
   }, [open]);
+
+  // The mouse wheel should cause the rainy day slider to move and not scroll the page
+  const handleMouseWheel = (event) => {
+    event.preventDefault();
+    const delta = Math.sign(event.deltaY);
+    const newValue = Math.max(0, Math.min(31, rainyDays - delta));
+    setRainyDays(newValue);
+  };
+
+  useEffect(() => {
+    const slider = document.getElementById('rainy-days-slider');
+    slider.addEventListener('wheel', handleMouseWheel, { passive: false });
+
+    return () => {
+      slider.removeEventListener('wheel', handleMouseWheel);
+    };
+  }, [rainyDays]);
 
   function getData(minTemp, maxTemp) {
     if (!minTemp || !maxTemp || !month) {
@@ -63,6 +81,7 @@ export const VacationFinder = () => {
         minTemp,
         maxTemp,
         month,
+        rainyDays,
       },
     })
       .then(({ data }) => {
@@ -174,6 +193,38 @@ export const VacationFinder = () => {
                     ))}
                   </MUI.Select>
                 </MUI.FormControl>
+              </MUI.Grid>
+              <MUI.Grid item xs={12} sm={4.5}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <MUI.Typography id="rainy-days-slider-label" gutterBottom>
+                    Maximum Rainy Days:
+                  </MUI.Typography>
+                  <div style={{ marginLeft: '8px' }}>
+                    <MUI.TextField
+                      id="rainy-days-input"
+                      type="number"
+                      value={rainyDays}
+                      onChange={(event) => {
+                        const value = event.target.value;
+                        setRainyDays(
+                          value === ''
+                            ? ''
+                            : Math.max(0, Math.min(31, parseInt(value)))
+                        );
+                      }}
+                      sx={{ width: '80px' }}
+                    />
+                  </div>
+                </div>
+                <MUI.Slider
+                  id="rainy-days-slider"
+                  value={rainyDays}
+                  onChange={(_, newValue) => setRainyDays(newValue)}
+                  min={0}
+                  max={31}
+                  step={1}
+                  sx={{ '& .MuiSlider-thumb': { cursor: 'grab' } }}
+                />
               </MUI.Grid>
               <MUI.Grid
                 item

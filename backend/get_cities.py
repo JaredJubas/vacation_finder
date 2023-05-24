@@ -1,14 +1,18 @@
-'''
-Get the cities that should be displayed in the application.
+"""
+This module defines a function to retrieve cities based on temperature and rainy days criteria from
+a database.
 
 Functions:
-    get_cities(min_temp, max_temp, month) -> list[str]
-'''
+    get_cities(min_temp: str, max_temp: str, month: str, rainy_days: str, dbname: Database) -> dict
+        Retrieves all cities where the temperature is within a specified range and the average
+        number of rainy days is less than or equal to a provided value.
+"""
 
 from collections import defaultdict
 
+from mongomock import Database
 
-def get_cities(min_temp, max_temp, month, dbname):
+def get_cities(min_temp: str, max_temp: str, month: str, rainy_days: str, dbname: Database) -> dict:
     '''
     Returns all cities where the temperature is in between a provided range.
 
@@ -21,14 +25,16 @@ def get_cities(min_temp, max_temp, month, dbname):
             min_temp (str): A string representing the minimum temperature
             max_temp (str): A string representing the maximum temperature
             month (str): A string representing the month (e.g., 'January', 'February', etc.)
+            rainy_days (str): A string representing the maximum number of rainy days
             dbname (Database): The name of the database to be used
 
         Returns:
             cities (dict[list[dict[str: str, str: float]]]): All cities where the min_temp is less 
-            than or equal to the max_temp for the provided month. The return should be a dictionary 
-            where the key is a country and the value is a list that contains all cities in this 
-            country that satisfy the above condition. This list would contain a dictionary of the 
-            city and the temperature for the provided month.
+            than or equal to the max_temp for the provided month an the average number of rainy days
+            is less than or equal to rainy_days. The return should be a dictionary where the key is
+            a country and the value is a list that contains all cities in this country that satisfy
+            the above condition. This list would contain a dictionary of the city and the
+            temperature for the provided month.
 
     '''
     valid_months = [
@@ -60,6 +66,7 @@ def get_cities(min_temp, max_temp, month, dbname):
         raise ValueError(
             "Minimum temperature cannot be greater than maximum temperature.")
 
+    float_rainy_days = float(rainy_days)
     shortened_month = month[:3].lower()
 
     cities_collection = dbname["cities"]
@@ -74,6 +81,9 @@ def get_cities(min_temp, max_temp, month, dbname):
         f"months.{shortened_month}.temperature": {
             "$lte": float_max_temp,
             "$gte": float_min_temp
+        },
+        f"months.{shortened_month}.rain": {
+            "$lte": float_rainy_days
         },
         "safety": {"$in": [1, 2]}
     }, {
