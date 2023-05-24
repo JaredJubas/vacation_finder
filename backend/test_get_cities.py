@@ -101,9 +101,10 @@ def test_invalid_temperature_range():
     min_temp = '1'
     max_temp = '0'
     month = 'January'
+    rainy_days = '2'
 
     with pytest.raises(ValueError):
-        get_cities(min_temp, max_temp, month, database)
+        get_cities(min_temp, max_temp, month, rainy_days, database)
 
 
 def test_invalid_month():
@@ -114,9 +115,10 @@ def test_invalid_month():
     min_temp = '1'
     max_temp = '5'
     month = 'Januaryv'
+    rainy_days = '2'
 
     with pytest.raises(ValueError):
-        get_cities(min_temp, max_temp, month, database)
+        get_cities(min_temp, max_temp, month, rainy_days, database)
 
 
 def test_invalid_month_casing():
@@ -128,9 +130,10 @@ def test_invalid_month_casing():
     min_temp = '1'
     max_temp = '5'
     month = 'january'
+    rainy_days = '2'
 
     with pytest.raises(ValueError):
-        get_cities(min_temp, max_temp, month, database)
+        get_cities(min_temp, max_temp, month, rainy_days, database)
 
 
 def test_no_cities_valid():
@@ -142,8 +145,9 @@ def test_no_cities_valid():
     min_temp = '1'
     max_temp = '5'
     month = 'February'
+    rainy_days = '2'
 
-    cities = get_cities(min_temp, max_temp, month, database)
+    cities = get_cities(min_temp, max_temp, month, rainy_days, database)
 
     assert not cities
 
@@ -157,8 +161,9 @@ def test_one_city_valid():
     min_temp = '10'
     max_temp = '12'
     month = 'May'
+    rainy_days = '8'
 
-    cities = get_cities(min_temp, max_temp, month, database)
+    cities = get_cities(min_temp, max_temp, month, rainy_days, database)
 
     assert cities == {'Canada': [{'city': 'Toronto', 'temperature': 10, 'rain': 6.6}]}
 
@@ -173,13 +178,32 @@ def test_multiple_cities_valid():
     min_temp = '20'
     max_temp = '23'
     month = 'August'
+    rainy_days = '8'
 
-    cities = get_cities(min_temp, max_temp, month, database)
+    cities = get_cities(min_temp, max_temp, month, rainy_days, database)
 
     assert cities == {
         'Canada': [{'city': 'Toronto', 'temperature': 20.1, 'rain': 2.3}, 
                    {'city': 'Ottawa', 'temperature': 23, 'rain': 6.56}]
         }
+    
+def test_multiple_valid_temp_one_valid_rain():
+    '''
+    Tests that multiple cities get returned, grouped under the same country, if multiple cities
+    exist in the database where the temperature for a given month is between min_temp and max_temp
+    and the cities are in the same country.
+    '''
+
+    min_temp = '20'
+    max_temp = '23'
+    month = 'August'
+    rainy_days = '6'
+
+    cities = get_cities(min_temp, max_temp, month, rainy_days, database)
+
+    assert cities == {
+        'Canada': [{'city': 'Toronto', 'temperature': 20.1, 'rain': 2.3}]
+    }
 
 
 def test_multiple_countries_valid():
@@ -192,8 +216,9 @@ def test_multiple_countries_valid():
     min_temp = '20'
     max_temp = '25'
     month = 'August'
+    rainy_days = '8'
 
-    cities = get_cities(min_temp, max_temp, month, database)
+    cities = get_cities(min_temp, max_temp, month, rainy_days, database)
 
     assert cities == {
         'Canada': [{'city': 'Toronto', 'temperature': 20.1, 'rain': 2.3}, 

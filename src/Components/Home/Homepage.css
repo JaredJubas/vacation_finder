@@ -51,16 +51,9 @@
 }
 
 /* Modifier: Home container - small screens */
-@media (max-width: 800px) and (min-width: 600px) {
+@media (max-width: 800px) {
   .home {
     background-size: 100% auto;
-    background-position: top 35% right 0;
-  }
-}
-
-/* Modifier: Home container - extra small screens */
-@media (max-width: 600px) {
-  .home {
-    background-position: bottom 20% right 0;
+    background-position: top 40% right 0;
   }
 }

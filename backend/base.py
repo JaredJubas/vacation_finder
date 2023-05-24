@@ -12,9 +12,10 @@ def my_profile():
     min_temp = request.args.get('minTemp')
     max_temp = request.args.get('maxTemp')
     month = request.args.get('month')
+    rainy_days = request.args.get('rainyDays')
 
     dbname = get_database()
 
-    response = get_cities(min_temp, max_temp, month, dbname)
+    response = get_cities(min_temp, max_temp, month, rainy_days, dbname)
 
     return response
