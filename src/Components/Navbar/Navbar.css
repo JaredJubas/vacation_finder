@@ -28,7 +28,7 @@
 }
 
 /* Modifier: Navbar - small screens */
-@media (max-width: 800px) {
+@media (max-width: 400px) {
   .navbar__links {
     flex-direction: column;
     gap: 1rem;
