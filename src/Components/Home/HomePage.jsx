@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@mui/material';
 import './Homepage.css';
 import { Navbar } from '../Navbar/Navbar';
 
@@ -11,9 +12,18 @@ export const HomePage = () => {
           <div className="header">
             <h1 className="title">Vacation Finder</h1>
             <div className="vacation-finder">
-              <a className="vacation-finder__button" href="/vacationFinder">
+              <Button
+                variant="contained"
+                href="/vacationFinder"
+                sx={{
+                  borderRadius: '12px',
+                  textTransform: 'none',
+                  fontSize: '1rem',
+                  padding: '10px 30px',
+                }}
+              >
                 Get started!
-              </a>
+              </Button>
             </div>
           </div>
         </header>
