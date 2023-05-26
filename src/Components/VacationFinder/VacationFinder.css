@@ -1,51 +1,49 @@
-/* Block: Vacation page container */
 .vacation-page {
   display: flex;
-  flex-flow: column;
-  height: 100%;
+  flex-direction: column;
+  height: 100vh;
 }
 
-/* Block: Vacation finder container */
 .vacation-page__finder {
-  background: #F0F0F0;
-  flex: 1 1 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-/* Element: Initial message */
+.vacation-page__search-bar {
+  flex: 1;
+  display: flex;
+  padding: 20px 0px;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../../../public/vacation-background.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
 .vacation-page__message {
   font-weight: 500;
   font-size: 22px;
   text-align: center;
-  padding: 50px;
+  padding: 40px;
 }
 
-/* Block: Search bar container */
-.vacation-page__search-bar {
+.countries-list {
+  flex: 1;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 15px;
 }
 
-/* Block: Search container */
-.vacation-page__search {
-  padding: 20px;
-  gap: 20px;
-  border-radius: 20px;
-  background:white;
-  max-width: 700px;
+.vacation-page__no-grow {
+  flex: 0 0 auto;
 }
 
-/* Block: Search components */
-.vacation-page__search-components {
-  display: flex;
-  flex-direction: row;
-  padding: 0px;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.dropdown-open {
+.vacation-page__dropdown-open {
   padding-right: 0 !important;
   overflow-y: auto !important;
 }
