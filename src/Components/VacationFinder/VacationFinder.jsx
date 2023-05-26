@@ -25,13 +25,13 @@ export const VacationFinder = () => {
     // TODO This is a temporary solution. Figure out why padding is being added when the month
     // dropdown is selected
     if (open) {
-      document.body.classList.add('dropdown-open');
+      document.body.classList.add('.vacation-page__dropdown-open');
     } else {
-      document.body.classList.remove('dropdown-open');
+      document.body.classList.remove('.vacation-page__dropdown-open');
     }
 
     return () => {
-      document.body.classList.remove('dropdown-open');
+      document.body.classList.remove('.vacation-page__dropdown-open');
     };
   }, [open]);
 
@@ -103,13 +103,11 @@ export const VacationFinder = () => {
     <div className="vacation-page">
       <Navbar />
       <div className="vacation-page__finder">
-        <div className="vacation-page__search-bar">
-          {firstTime && (
-            <p className="vacation-page__message">
-              Search for vacation destinations that work for you!
-            </p>
-          )}
-          <ErrorMessage errorMessage={errorMessage} />
+        <div
+          className={`vacation-page__search-bar ${
+            cityData ? '.vacation-page__no-grow' : ''
+          }`}
+        >
           <MUI.Box
             sx={{
               padding: '20px',
@@ -119,6 +117,12 @@ export const VacationFinder = () => {
               maxWidth: '700px',
             }}
           >
+            {firstTime && (
+              <p className="vacation-page__message">
+                Search for vacation destinations that work for you!
+              </p>
+            )}
+            <ErrorMessage errorMessage={errorMessage} />
             <MUI.Grid
               container
               spacing={2}
