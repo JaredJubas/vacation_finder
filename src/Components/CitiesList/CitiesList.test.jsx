@@ -13,15 +13,13 @@ describe('CitiesList', () => {
     const { container } = render(<CitiesList cities={cities} isOpen={true} />);
 
     // The default is to sort city names so the tooltip will initially say Sort Descending
-    const cityHeader = screen.getByTitle('Sort descending');
-    const cityHeaders = screen.getAllByTitle('Sort ascending');
-    const temperatureHeader = cityHeaders[0];
-    const rainHeader = cityHeaders[1];
+    const cityHeader = screen.getByTitle('Sort city descending');
+    const temperatureHeader = screen.getByTitle('Sort temperature ascending');
+    const rainHeader = screen.getByTitle('Sort rain ascending');
 
-    expect(cityHeaders).toHaveLength(2);
     expect(cityHeader).toHaveTextContent('City');
-    expect(temperatureHeader).toHaveTextContent('Average (°C)');
-    expect(rainHeader).toHaveTextContent('Precipitation (days)');
+    expect(temperatureHeader).toHaveTextContent('Avg (°C)');
+    expect(rainHeader).toHaveTextContent('Rain (days)');
 
     const cityRows = container.getElementsByClassName('city-row');
     expect(cityRows).toHaveLength(3);
@@ -47,7 +45,7 @@ describe('CitiesList', () => {
   it('should toggle city name sorting order when clicking on city header', () => {
     const { container } = render(<CitiesList cities={cities} isOpen={true} />);
 
-    const cityHeader = screen.getByTitle('Sort descending');
+    const cityHeader = screen.getByTitle('Sort city descending');
 
     expect(cityHeader).toHaveTextContent('City');
 
@@ -78,9 +76,8 @@ describe('CitiesList', () => {
   it('should toggle temperature sorting order when clicking on temperature header', () => {
     const { container } = render(<CitiesList cities={cities} isOpen={true} />);
 
-    const cityHeaders = screen.getAllByTitle('Sort ascending');
-    const temperatureHeader = cityHeaders[0];
-    expect(temperatureHeader).toHaveTextContent('Average (°C)');
+    const temperatureHeader = screen.getByTitle('Sort temperature ascending');
+    expect(temperatureHeader).toHaveTextContent('Avg (°C)');
 
     const cityRows = container.getElementsByClassName('city-row');
     expect(cityRows).toHaveLength(3);
@@ -108,11 +105,9 @@ describe('CitiesList', () => {
   it('should toggle rain sorting order when clicking on rain header', () => {
     const { container } = render(<CitiesList cities={cities} isOpen={true} />);
 
-    const cityHeaders = screen.getAllByTitle('Sort ascending');
-    const rainHeader = cityHeaders[1];
+    const rainHeader = screen.getByTitle('Sort rain ascending');
 
-    expect(cityHeaders).toHaveLength(2);
-    expect(rainHeader).toHaveTextContent('Precipitation (days)');
+    expect(rainHeader).toHaveTextContent('Rain (days)');
 
     const cityRows = container.getElementsByClassName('city-row');
     expect(cityRows).toHaveLength(3);

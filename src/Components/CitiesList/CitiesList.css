@@ -69,8 +69,21 @@
   margin: 1px 0 0 10px;
 }
 
-@media screen and (max-width:500px) {
+.mobile {
+  display: none;
+}
+
+
+@media screen and (max-width:400px) {
   .city-row__city {
     max-width: 40%;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: flex;
   }
 }

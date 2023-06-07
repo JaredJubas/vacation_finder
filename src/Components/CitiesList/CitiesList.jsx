@@ -43,8 +43,8 @@ export const CitiesList = ({ cities, isOpen }) => {
 
   // Tooltip text so the user can see what will happen if you click a header
   const getTooltipText = (header) => {
-    const ascendingText = 'Sort ascending';
-    const descendingText = 'Sort descending';
+    const ascendingText = `Sort ${header} ascending`;
+    const descendingText = `Sort ${header} descending`;
 
     if (header !== sortOrder.header) {
       return ascendingText;
@@ -57,6 +57,10 @@ export const CitiesList = ({ cities, isOpen }) => {
   const temperatureTooltip = getTooltipText('temperature');
   const rainTooltip = getTooltipText('rain');
 
+  const cityEmoji = '\u{1F3D9}\u{FE0F}';
+  const averageTempEmoji = '\u{1F321}';
+  const precipitationEmoji = '\u{2614}';
+
   return (
     <div className={citiesDropdownClasses}>
       <div className="cities-dropdown-header">
@@ -65,7 +69,10 @@ export const CitiesList = ({ cities, isOpen }) => {
           title={cityTooltip}
           onClick={() => toggleSortOrder('city')}
         >
-          <span>City</span>
+          <div>
+            <span className="desktop">City</span>
+            <span className="mobile">{cityEmoji}</span>
+          </div>
           {sortOrder.header === 'city' && sortOrder.order === 'asc' && (
             <span className="arrows__arrow-up"></span>
           )}
@@ -86,7 +93,10 @@ export const CitiesList = ({ cities, isOpen }) => {
           title={temperatureTooltip}
           onClick={() => toggleSortOrder('temperature')}
         >
-          <span>Average (°C)</span>
+          <div>
+            <span className="desktop">Avg (°C)</span>
+            <span className="mobile">{averageTempEmoji}(°C)</span>
+          </div>
           {sortOrder.header === 'temperature' && sortOrder.order === 'asc' && (
             <span className="arrows__arrow-up"></span>
           )}
@@ -107,7 +117,10 @@ export const CitiesList = ({ cities, isOpen }) => {
           title={rainTooltip}
           onClick={() => toggleSortOrder('rain')}
         >
-          <span>Precipitation (days)</span>
+          <div>
+            <span className="desktop">Rain (days)</span>
+            <span className="mobile">{precipitationEmoji}(days)</span>
+          </div>
           {sortOrder.header === 'rain' && sortOrder.order === 'asc' && (
             <span className="arrows__arrow-up"></span>
           )}
