@@ -27,6 +27,11 @@ export const Navbar = () => {
               Vacation Finder
             </a>
           </li>
+          <li className="navbar__item">
+            <a href="/about" className="navbar__item">
+              About
+            </a>
+          </li>
         </ul>
       </div>
       {menuOpen && <div className="navbar__overlay" onClick={toggleMenu}></div>}

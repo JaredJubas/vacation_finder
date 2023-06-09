@@ -110,7 +110,7 @@ export const VacationFinder = () => {
         >
           <MUI.Box
             sx={{
-              padding: '20px',
+              padding: '20px 30px',
               gap: '20px',
               borderRadius: '20px',
               background: 'white',
